@@ -1,6 +1,6 @@
 # Cerința 3: Testare Structurală — Graful de Control (CFG) și Complexitatea Ciclomatică
 
-**Autor:** Natalia Moroz (50% contribuție)  
+**Autor:** Victor Mura (50% contribuție)  
 **Metoda analizată:** `evaluate_parking_access` din [`src/parking_gate.py`](../src/parking_gate.py)
 
 ---

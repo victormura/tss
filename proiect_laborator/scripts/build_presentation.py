@@ -289,8 +289,8 @@ MUT = load_mutation()
 # ============================================================== 01 · TITLE
 s = prs.slides.add_slide(BLANK)
 box(s, 0, 0, W, H, fill=INK)
-box(s, 0, 0, W, 0.09, fill=VICTOR)
-box(s, W / 2, 0, W / 2, 0.09, fill=NATALIA)
+box(s, 0, 0, W, 0.09, fill=NATALIA)
+box(s, W / 2, 0, W / 2, 0.09, fill=VICTOR)
 text(s, 0.9, 1.0, 9, 0.35, "TESTAREA SISTEMELOR SOFTWARE  ·  PROIECT DE LABORATOR", size=12, color=rgb("9FB3C8"), bold=True)
 text(s, 0.9, 1.5, 8.5, 1.0, "Smart Parking Gate", size=54, color=WHITE, bold=True)
 text(s, 0.9, 2.55, 7.6, 1.0,
@@ -302,14 +302,14 @@ stats = [("80", "teste automate"), ("V(G) = 7", "complexitate ciclomatică"),
          ("5", "teste MC/DC (N + 1)"), ("2", "unelte de mutație")]
 for i, (big, small) in enumerate(stats):
     yy = 1.05 + i * 1.02
-    box(s, 9.55, yy, 0.05, 0.78, fill=VICTOR if i % 2 == 0 else NATALIA)
+    box(s, 9.55, yy, 0.05, 0.78, fill=NATALIA if i % 2 == 0 else VICTOR)
     text(s, 9.8, yy - 0.04, 3, 0.55, big, size=28, color=WHITE, bold=True)
     text(s, 9.8, yy + 0.48, 3, 0.3, small, size=11, color=rgb("9FB3C8"))
 
 # people
 for i, (name, reqs, color) in enumerate([
-        ("Victor Mura", "Cerințele 1, 2, 5  ·  testare funcțională, acoperire, mutant echivalent", VICTOR),
-        ("Natalia Moroz", "Cerințele 3, 4, 6, 7  ·  CFG, MC/DC, mutanți ne-echivalenți, unelte", NATALIA)]):
+        ("Natalia Moroz", "Cerințele 1, 2, 5  ·  testare funcțională, acoperire, mutant echivalent", NATALIA),
+        ("Victor Mura", "Cerințele 3, 4, 6, 7  ·  CFG, MC/DC, mutanți ne-echivalenți, unelte", VICTOR)]):
     xx = 0.9 + i * 4.3
     box(s, xx, 4.7, 4.0, 1.25, fill=rgb("18263B"), shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.08)
     box(s, xx, 4.7, 0.07, 1.25, fill=color)
@@ -323,13 +323,13 @@ text(s, 0.9, 6.75, 11, 0.3,
 # ============================================================== 02 · AGENDA
 s = new_slide(2, "Structura prezentării", "7 cerințe, două perspective, o singură funcție", "team")
 agenda = [
-    ("1", "Testare funcțională", "EP · BVA · Graf cauză-efect", "victor"),
-    ("2", "Acoperire de cod", "pytest-cov, fiecare set separat", "victor"),
-    ("3", "Graf de control", "CFG · V(G) · căi independente", "natalia"),
-    ("4", "MC/DC", "decizia compusă EV, 5 teste", "natalia"),
-    ("5", "Mutant echivalent", "ordin 1, demonstrație pe ℤ", "victor"),
-    ("6", "Mutanți ne-echivalenți", "unul ucis, unul supraviețuitor", "natalia"),
-    ("7", "Unelte de mutație", "mutmut vs. cosmic-ray", "natalia"),
+    ("1", "Testare funcțională", "EP · BVA · Graf cauză-efect", "natalia"),
+    ("2", "Acoperire de cod", "pytest-cov, fiecare set separat", "natalia"),
+    ("3", "Graf de control", "CFG · V(G) · căi independente", "victor"),
+    ("4", "MC/DC", "decizia compusă EV, 5 teste", "victor"),
+    ("5", "Mutant echivalent", "ordin 1, demonstrație pe ℤ", "natalia"),
+    ("6", "Mutanți ne-echivalenți", "unul ucis, unul supraviețuitor", "victor"),
+    ("7", "Unelte de mutație", "mutmut vs. cosmic-ray", "victor"),
 ]
 cw, ch, gx, gy = 2.82, 2.05, 0.21, 0.28
 for i, (num, title_, sub, who) in enumerate(agenda):
@@ -343,7 +343,7 @@ for i, (num, title_, sub, who) in enumerate(agenda):
     text(s, xx + 0.25, yy + 0.98, cw - 0.4, 0.4, title_, size=15.5, color=INK, bold=True)
     text(s, xx + 0.25, yy + 1.36, cw - 0.4, 0.5, sub, size=11, color=MUTED)
 # legend
-for i, (who, lbl) in enumerate([("victor", "Victor Mura — 50%"), ("natalia", "Natalia Moroz — 50%")]):
+for i, (who, lbl) in enumerate([("natalia", "Natalia Moroz — 50%"), ("victor", "Victor Mura — 50%")]):
     _, c, _ = owner_meta(who)
     box(s, 0.7 + i * 2.8, 6.55, 0.22, 0.22, fill=c, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.3)
     text(s, 1.02 + i * 2.8, 6.55, 2.4, 0.25, lbl, size=11, color=INK_2)
@@ -428,12 +428,12 @@ for i, (o, c) in enumerate(outs):
     pill(s, 7.85 + col * 1.58, 5.8 + row * 0.45, 1.45, 0.34, o, fill=c, size=9.5)
 
 # ============================================================== 05 · DIVIDER I
-divider(5, "Partea I · Victor Mura", "Testare funcțională", "victor",
-        [("1", "Partiționare în clase de echivalență, valori de frontieră, graf cauză-efect", "victor"),
-         ("2", "Acoperirea de cod obținută de fiecare set, măsurată separat", "victor")])
+divider(5, "Partea I · Natalia Moroz", "Testare funcțională", "natalia",
+        [("1", "Partiționare în clase de echivalență, valori de frontieră, graf cauză-efect", "natalia"),
+         ("2", "Acoperirea de cod obținută de fiecare set, măsurată separat", "natalia")])
 
 # ============================================================== 06 · EP
-s = new_slide(6, "Testare funcțională", "Partiționare în clase de echivalență", "victor", req="1a")
+s = new_slide(6, "Testare funcțională", "Partiționare în clase de echivalență", "natalia", req="1a")
 rows = [["Parametru", "Clase valide", "Clase invalide"],
         ["quota  (q)", "q ≥ 1", "q = 0  ·  q < 0"],
         ["occupied  (o)", "o < q (sub cotă)  ·  o = q (la cotă)  ·  o > q (peste cotă)", "o < 0"],
@@ -445,19 +445,19 @@ fills = {(i, 2): RED_L for i in range(1, 4)}
 colors = {(i, 2): RED for i in range(1, 4)}
 table(s, 0.7, 1.6, 8.3, rows, [1.85, 4.45, 2.0], row_h=0.58, size=11.5, fills=fills, colors=colors,
       bolds={(i, 0): True for i in range(1, 7)})
-card(s, 9.35, 1.6, 3.3, 4.06, fill=VICTOR_L)
-text(s, 9.6, 1.8, 2.9, 0.8, "13", size=54, color=VICTOR, bold=True)
+card(s, 9.35, 1.6, 3.3, 4.06, fill=NATALIA_L)
+text(s, 9.6, 1.8, 2.9, 0.8, "13", size=54, color=NATALIA, bold=True)
 text(s, 9.6, 2.75, 2.9, 0.3, "cazuri de test", size=13, color=INK, bold=True)
 text(s, 9.6, 3.2, 2.85, 2.3,
      ["6 pentru clasele invalide (ValueError).", "7 pentru clasele valide, câte unul pentru fiecare rezultat al funcției.",
       "tests/test_ep.py"], size=11.5, color=INK_2, spacing=6)
 text(s, 0.7, 6.0, 12, 0.6,
-     [[{"t": "Ideea: ", "bold": True, "color": VICTOR},
+     [[{"t": "Ideea: ", "bold": True, "color": NATALIA},
        "un reprezentant per clasă; dacă funcționează pentru el, presupunem că funcționează pentru toată clasa. "
        "Limita: nu spune nimic despre marginile clasei — de aceea urmează BVA."]], size=12, color=INK_2)
 
 # ============================================================== 07 · BVA
-s = new_slide(7, "Testare funcțională", "Analiza valorilor de frontieră", "victor", req="1b")
+s = new_slide(7, "Testare funcțională", "Analiza valorilor de frontieră", "natalia", req="1b")
 
 
 def number_line(slide, x, y, w, lo, hi, marks, bands, title_, unit_label=None):
@@ -470,7 +470,7 @@ def number_line(slide, x, y, w, lo, hi, marks, bands, title_, unit_label=None):
             text(slide, sx(a), y - 0.32, sx(b) - sx(a), 0.22, lbl, size=8.5, color=MUTED, align=PP_ALIGN.CENTER)
     box(slide, x, y - 0.01, w, 0.02, fill=INK_2)
     for v, kind in marks:
-        c = {"bad": RED, "ok": VICTOR, "edge": INK}[kind]
+        c = {"bad": RED, "ok": NATALIA, "edge": INK}[kind]
         d = 0.2
         box(slide, sx(v) - d / 2, y - d / 2, d, d, fill=c, shape=MSO_SHAPE.OVAL, line=WHITE, line_w=1.5)
         text(slide, sx(v) - 0.3, y + 0.16, 0.6, 0.25, str(v), size=10, color=c, bold=True, align=PP_ALIGN.CENTER)
@@ -479,12 +479,12 @@ def number_line(slide, x, y, w, lo, hi, marks, bands, title_, unit_label=None):
 number_line(s, 1.0, 2.35, 11.3, -2, 25,
             [(-1, "bad"), (0, "ok"), (1, "ok"), (7, "ok"), (8, "edge"), (9, "ok"), (16, "ok"), (17, "edge"),
              (18, "ok"), (22, "ok"), (23, "ok"), (24, "bad")],
-            [(-2, -0.5, RED_L, "invalid"), (-0.5, 7.5, PANEL, "off-peak"), (7.5, 17.5, VICTOR_L, "ore de vârf"),
+            [(-2, -0.5, RED_L, "invalid"), (-0.5, 7.5, PANEL, "off-peak"), (7.5, 17.5, NATALIA_L, "ore de vârf"),
              (17.5, 23.5, PANEL, "off-peak"), (23.5, 25, RED_L, "invalid")],
             "entry_hour — limitele zilei și ale intervalului de vârf")
 number_line(s, 1.0, 4.15, 5.2, 7, 13,
             [(9, "ok"), (10, "edge"), (11, "ok")],
-            [(7, 9.5, VICTOR_L, "sub cotă"), (9.5, 13, PANEL, "cotă atinsă")],
+            [(7, 9.5, NATALIA_L, "sub cotă"), (9.5, 13, PANEL, "cotă atinsă")],
             "occupied față de quota = 10")
 number_line(s, 7.1, 4.15, 5.2, 2, 8,
             [(4, "ok"), (5, "edge"), (6, "ok")],
@@ -496,18 +496,18 @@ rows = [["Frontieră", "Valori testate", "Ce prinde"],
         ["occupied < quota", "9 · 10 · 11", "< scris greșit ca ≤"],
         ["overflow < 5", "4 · 5 · 6", "pragul strict de overflow"]]
 table(s, 1.0, 4.95, 7.6, rows, [2.1, 2.0, 3.5], row_h=0.36, size=10.5, fonts={1: MONO})
-card(s, 9.0, 4.95, 3.3, 1.8, fill=VICTOR_L)
-text(s, 9.25, 5.05, 2.9, 0.8, "24", size=44, color=VICTOR, bold=True)
+card(s, 9.0, 4.95, 3.3, 1.8, fill=NATALIA_L)
+text(s, 9.25, 5.05, 2.9, 0.8, "24", size=44, color=NATALIA, bold=True)
 text(s, 9.25, 5.82, 2.9, 0.8, ["cazuri de test", "tests/test_bva.py"], size=11.5, color=INK_2)
 
 # ============================================================== 08 · CEG GRAPH
-s = new_slide(8, "Testare funcțională", "Graful cauză-efect (CEG) — Sintaxă Myers", "victor", req="1c")
+s = new_slide(8, "Testare funcțională", "Graful cauză-efect (CEG) — Sintaxă Myers", "natalia", req="1c")
 causes = ["C1  tier = VIP", "C2  tier = CONTRACTOR", "C3  ore de vârf (08–17)", "C4  vehicul electric (EV)",
           "C5  stație EV liberă", "C6  ocupate < cotă", "C7  overflow permis", "C8  depășire cotă < 5"]
 cy = {}
 for i, c in enumerate(causes):
     yy = 1.55 + i * 0.62
-    b = box(s, 0.75, yy, 2.50, 0.44, fill=VICTOR_L, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.3)
+    b = box(s, 0.75, yy, 2.50, 0.44, fill=NATALIA_L, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.3)
     shape_text(b, c, size=10, color=INK, align=PP_ALIGN.LEFT, margin=0.10)
     cy[i + 1] = yy + 0.22
 CX = 3.25  # right edge of causes
@@ -602,7 +602,7 @@ text(s, 10.70, 1.70, 1.80, 4.70,
      size=9, color=INK_2, spacing=2)
 
 # ============================================================== 09 · CEG TABLE
-s = new_slide(9, "Testare funcțională", "Tabelul de decizie Myers: 9 reguli de testare", "victor", req="1c")
+s = new_slide(9, "Testare funcțională", "Tabelul de decizie Myers: 9 reguli de testare", "natalia", req="1c")
 D = "–"
 cols = ["Condiție / Efect", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9"]
 table_rows = [
@@ -630,8 +630,8 @@ for r_idx in range(1, 9):
     for c_idx in range(1, 10):
         val = table_rows[r_idx][c_idx]
         if val == "1":
-            fills[(r_idx, c_idx)] = VICTOR_L
-            colors[(r_idx, c_idx)] = VICTOR
+            fills[(r_idx, c_idx)] = NATALIA_L
+            colors[(r_idx, c_idx)] = NATALIA
             bolds[(r_idx, c_idx)] = True
         elif val == D:
             colors[(r_idx, c_idx)] = rgb("94A3B8")
@@ -678,7 +678,7 @@ card(s, 8.30, 1.55, 4.35, 4.90, fill=PANEL)
 text(s, 8.50, 1.70, 3.95, 4.60,
      [[{"t": "Procedura de Derivare (Conform Cursului)", "bold": True, "size": 12, "color": INK}],
       "",
-      [{"t": "1. Pas inițial:", "bold": True, "size": 10, "color": VICTOR}, " nr_coloane = 0 (tabel inițial gol)"],
+      [{"t": "1. Pas inițial:", "bold": True, "size": 10, "color": NATALIA}, " nr_coloane = 0 (tabel inițial gol)"],
       "",
       [{"t": "2. Backtracking pentru fiecare efect (Ei = 1):", "bold": True, "size": 10, "color": INK}],
       [{"t": "• E1 = 1", "bold": True, "color": GREEN}, "  ⇒  C1=1  ⇒  ", {"t": "Regula 1 (R1)", "bold": True}, "  (VIP)"],
@@ -692,12 +692,12 @@ text(s, 8.50, 1.70, 3.95, 4.60,
       "• Constrângerea E(C1, C2) elimină starea nefezabilă C1=1 ∧ C2=1.",
       "• Măștile de prioritate elimină combinațiile redundante.",
       "",
-      [{"t": "4. Rezultat:", "bold": True, "size": 10, "color": VICTOR}, " 9 reguli minimale ⇒ ",
+      [{"t": "4. Rezultat:", "bold": True, "size": 10, "color": NATALIA}, " 9 reguli minimale ⇒ ",
        {"t": "9 teste automate în tests/test_ceg.py", "bold": True}, "."]],
      size=9.5, color=INK_2, spacing=3)
 
 # ============================================================== 10 · COVERAGE
-s = new_slide(10, "Acoperire de cod", "Același cod, trei seturi de teste, trei rezultate", "victor", req="2")
+s = new_slide(10, "Acoperire de cod", "Același cod, trei seturi de teste, trei rezultate", "natalia", req="2")
 cd = CategoryChartData()
 cd.categories = ["EP (13 teste)", "BVA (24 teste)", "CEG (9 teste)"]
 cd.add_series("Instrucțiuni %", (100.0, 93.1, 96.6))
@@ -732,7 +732,7 @@ dl.number_format_is_linked = False
 dl.position = XL_LABEL_POSITION.OUTSIDE_END
 dl.font.size = Pt(10.5)
 dl.font.bold = True
-for ser, c in zip(plot.series, (VICTOR, rgb("8FD3C9"))):
+for ser, c in zip(plot.series, (NATALIA, rgb("A9A2EE"))):
     ser.format.fill.solid()
     ser.format.fill.fore_color.rgb = c
 
@@ -752,12 +752,12 @@ text(s, 0.7, 6.75, 6.4, 0.25, "pytest --cov=src --cov-branch, rulat separat pe f
      size=9, color=MUTED, italic=True)
 
 # ============================================================== 11 · DIVIDER II
-divider(11, "Partea II · Natalia Moroz", "Testare structurală", "natalia",
-        [("3", "Graful de control, complexitatea ciclomatică, căile independente", "natalia"),
-         ("4", "Modified Condition / Decision Coverage pe decizia compusă EV", "natalia")])
+divider(11, "Partea II · Victor Mura", "Testare structurală", "victor",
+        [("3", "Graful de control, complexitatea ciclomatică, căile independente", "victor"),
+         ("4", "Modified Condition / Decision Coverage pe decizia compusă EV", "victor")])
 
 # ============================================================== 12 · CFG
-s = new_slide(12, "Testare structurală", "Graful de flux de control", "natalia", req="3")
+s = new_slide(12, "Testare structurală", "Graful de flux de control", "victor", req="3")
 preds = [("N1", "date invalide?"), ("N3", "VIP?"), ("N5", "contractor ∧ ¬vârf?"),
          ("N7", "condiția EV"), ("N9", "în cotă?"), ("N11", "overflow?")]
 rets = [("N2", "ValueError", RED), ("N4", "GRANTED_VIP", GREEN), ("N6", "DENIED_HOURS", RED),
@@ -768,8 +768,8 @@ BUS = 6.35
 y0, dy = 1.55, 0.76
 for i, ((pid, pq), (rid, rl, rc)) in enumerate(zip(preds, rets)):
     yy = y0 + i * dy
-    d = box(s, PX, yy, PW, PH, fill=NATALIA_L, line=NATALIA, line_w=1.25, shape=MSO_SHAPE.DIAMOND)
-    shape_text(d, [[{"t": pid + "  ", "bold": True, "color": NATALIA}, {"t": pq}]], size=9, color=INK, margin=0.1)
+    d = box(s, PX, yy, PW, PH, fill=VICTOR_L, line=VICTOR, line_w=1.25, shape=MSO_SHAPE.DIAMOND)
+    shape_text(d, [[{"t": pid + "  ", "bold": True, "color": VICTOR}, {"t": pq}]], size=9, color=INK, margin=0.1)
     r = box(s, RX, yy + 0.11, RW, 0.4, fill=WHITE, line=rc, line_w=1.25, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.3)
     shape_text(r, [[{"t": rid + "  ", "bold": True, "color": rc}, {"t": rl, "font": MONO}]], size=9, color=INK)
     arrow(s, PX + PW, yy + PH / 2, RX, yy + PH / 2, color=GREEN, width=1.25)
@@ -793,9 +793,9 @@ shape_text(ex, "N14", size=9, color=WHITE, bold=True)
 
 # metrics
 text(s, 7.2, 1.55, 5.4, 0.3, "COMPLEXITATE CICLOMATICĂ", size=10.5, color=MUTED, bold=True)
-card(s, 7.2, 1.9, 5.45, 1.25, fill=NATALIA)
+card(s, 7.2, 1.9, 5.45, 1.25, fill=VICTOR)
 text(s, 7.5, 2.0, 3, 1.0, "V(G) = 7", size=38, color=WHITE, bold=True, anchor=MSO_ANCHOR.MIDDLE)
-text(s, 10.3, 2.08, 2.2, 0.9, ["14 noduri", "19 arce", "6 noduri predicat"], size=11.5, color=rgb("E2DFFB"))
+text(s, 10.3, 2.08, 2.2, 0.9, ["14 noduri", "19 arce", "6 noduri predicat"], size=11.5, color=rgb("D1F2EB"))
 methods = [("Arce și noduri", "E − N + 2P", "19 − 14 + 2 = 7"),
            ("Noduri predicat", "P + 1", "6 + 1 = 7"),
            ("Regiuni", "R", "6 închise + 1 exterioară = 7")]
@@ -803,13 +803,13 @@ for i, (m, f, v) in enumerate(methods):
     yy = 3.35 + i * 0.95
     card(s, 7.2, yy, 5.45, 0.8, fill=WHITE, line=LINE)
     text(s, 7.45, yy + 0.12, 2.2, 0.3, m, size=12, color=INK, bold=True)
-    text(s, 7.45, yy + 0.43, 2.2, 0.3, f, size=11, color=NATALIA, font=MONO)
+    text(s, 7.45, yy + 0.43, 2.2, 0.3, f, size=11, color=VICTOR, font=MONO)
     text(s, 9.6, yy + 0.22, 2.9, 0.4, v, size=13, color=INK_2, align=PP_ALIGN.RIGHT, font=MONO)
 text(s, 7.2, 6.25, 5.45, 0.5, "Trei metode, același rezultat ⇒ 7 căi liniar independente de acoperit.",
      size=11.5, color=INK_2, italic=True)
 
 # ============================================================== 13 · PATHS
-s = new_slide(13, "Testare structurală", "7 căi liniar independente, fiecare cu testul ei", "natalia", req="3")
+s = new_slide(13, "Testare structurală", "7 căi liniar independente, fiecare cu testul ei", "victor", req="3")
 paths = [
     ("P1", "N1 → N2", "quota = 0", "ValueError", RED),
     ("P2", "N1 → N3 → N4", "tier = VIP", "GRANTED_VIP", GREEN),
@@ -821,17 +821,17 @@ paths = [
 ]
 rows = [["Cale", "Secvență de noduri", "Date de test", "Rezultat"]] + [[p[0], p[1], p[2], p[3]] for p in paths]
 colors = {(i, 3): p[4] for i, p in enumerate(paths, start=1)}
-colors.update({(i, 0): NATALIA for i in range(1, 8)})
+colors.update({(i, 0): VICTOR for i in range(1, 8)})
 table(s, 0.7, 1.6, 11.95, rows, [0.9, 3.6, 3.65, 3.8], row_h=0.5, size=12, colors=colors,
       bolds={(i, j): True for i in range(1, 8) for j in (0, 3)}, fonts={1: MONO, 3: MONO})
-card(s, 0.7, 5.75, 11.95, 0.95, fill=NATALIA_L)
+card(s, 0.7, 5.75, 11.95, 0.95, fill=VICTOR_L)
 text(s, 1.0, 5.9, 11.4, 0.7,
-     [[{"t": "De ce 7?  ", "bold": True, "color": NATALIA},
+     [[{"t": "De ce 7?  ", "bold": True, "color": VICTOR},
        "Fiecare cale adaugă cel puțin un arc nou. Împreună acoperă toate cele 19 arce ale grafului, "
        "iar orice altă cale prin program se poate scrie ca o combinație a acestora."]], size=12, color=INK_2)
 
 # ============================================================== 14 · MC/DC
-s = new_slide(14, "Testare structurală", "MC/DC pe decizia de acces la stația EV", "natalia", req="4")
+s = new_slide(14, "Testare structurală", "MC/DC pe decizia de acces la stația EV", "victor", req="4")
 card(s, 0.7, 1.5, 11.95, 0.85, fill=PANEL)
 text(s, 0.95, 1.6, 7.0, 0.65,
      [[{"t": "D = (", "font": MONO}, {"t": "A", "font": MONO, "bold": True, "color": VICTOR},
@@ -856,8 +856,8 @@ rows = [["Test", "A", "B", "C", "D", "Dec.", "Justificare independență"]]
 fills, colors, bolds = {}, {}, {}
 for idx, (t, a, b, c, d, dec, desc) in enumerate(mcdc_tests, start=1):
     rows.append([t, a, b, c, d, dec, desc])
-    fills[(idx, None)] = NATALIA_L if idx % 2 == 1 else WHITE
-    colors[(idx, 0)] = NATALIA
+    fills[(idx, None)] = VICTOR_L if idx % 2 == 1 else WHITE
+    colors[(idx, 0)] = VICTOR
     bolds[(idx, 0)] = True
     bolds[(idx, 5)] = True
     colors[(idx, 5)] = GREEN if dec == "1" else RED
@@ -891,18 +891,18 @@ for i, (cond, c, t1, v1, t2, v2) in enumerate(pairs):
     arrow(s, 9.0, yy + 0.36, 9.45, yy + 0.36, color=c, width=1.5)
     text(s, 9.6, yy + 0.2, 2.9, 0.35, [[{"t": t2 + "  ", "bold": True}, {"t": v2, "font": MONO}, "  → 0"]],
          size=12, color=INK)
-card(s, 5.75, 6.4, 6.9, 0.45, fill=NATALIA)
+card(s, 5.75, 6.4, 6.9, 0.45, fill=VICTOR)
 text(s, 5.95, 6.45, 6.6, 0.35, "N = 4 condiții  ⇒  N + 1 = 5 teste  ·  tests/test_mcdc.py  ·  5/5 trec",
      size=12, color=WHITE, bold=True, anchor=MSO_ANCHOR.MIDDLE)
 
 # ============================================================== 15 · DIVIDER III
 divider(15, "Partea III · Echipa", "Testare prin mutații", "team",
-        [("5", "Un mutant de ordin 1 echivalent — și de ce nu poate fi ucis", "victor"),
-         ("6", "Doi mutanți ne-echivalenți: unul ucis, unul supraviețuitor", "natalia"),
-         ("7", "Generare automată cu mutmut și cosmic-ray", "natalia")])
+        [("5", "Un mutant de ordin 1 echivalent — și de ce nu poate fi ucis", "natalia"),
+         ("6", "Doi mutanți ne-echivalenți: unul ucis, unul supraviețuitor", "victor"),
+         ("7", "Generare automată cu mutmut și cosmic-ray", "victor")])
 
 # ============================================================== 16 · EQUIVALENT MUTANT
-s = new_slide(16, "Testare prin mutații", "Mutant de ordin 1 echivalent", "victor", req="5")
+s = new_slide(16, "Testare prin mutații", "Mutant de ordin 1 echivalent", "natalia", req="5")
 code_block(s, 0.7, 1.6, 6.3, 1.3, [
     ("# src/parking_gate.py, linia 57", "dim"),
     ("- is_peak_hours = (8 <= entry_hour <= 17)", "del"),
@@ -916,12 +916,12 @@ steps = [("1", "entry_hour este de tip int, deci h ∈ ℤ."),
 for i, (k, t) in enumerate(steps):
     yy = 3.5 + i * 0.78
     last = k == "∴"
-    pill(s, 0.7, yy + 0.06, 0.45, 0.45, k, fill=VICTOR if not last else INK, size=13)
+    pill(s, 0.7, yy + 0.06, 0.45, 0.45, k, fill=NATALIA if not last else INK, size=13)
     text(s, 1.35, yy + 0.08, 5.6, 0.6, t, size=13, color=INK if last else INK_2, bold=last)
 
-card(s, 7.45, 1.6, 5.2, 2.6, fill=VICTOR_L)
-text(s, 7.75, 1.8, 4.7, 0.3, "VERIFICARE EXHAUSTIVĂ", size=10.5, color=VICTOR, bold=True)
-text(s, 7.75, 2.15, 4.7, 0.9, "1 152", size=48, color=VICTOR, bold=True)
+card(s, 7.45, 1.6, 5.2, 2.6, fill=NATALIA_L)
+text(s, 7.75, 1.8, 4.7, 0.3, "VERIFICARE EXHAUSTIVĂ", size=10.5, color=NATALIA, bold=True)
+text(s, 7.75, 2.15, 4.7, 0.9, "1 152", size=48, color=NATALIA, bold=True)
 text(s, 7.75, 3.05, 4.7, 1.0, "comparații original vs. mutant, toate identice\n24 ore × 3 roluri × 2³ combinații bool × 2 niveluri de ocupare",
      size=11, color=INK_2)
 card(s, 7.45, 4.45, 5.2, 2.3, fill=WHITE, line=LINE)
@@ -932,7 +932,7 @@ text(s, 7.75, 4.65, 4.7, 2.0,
      size=11.5, color=INK_2, spacing=6)
 
 # ============================================================== 17 · KILLED VS SURVIVED
-s = new_slide(17, "Testare prin mutații", "Același test, doi mutanți, două destine", "natalia", req="6")
+s = new_slide(17, "Testare prin mutații", "Același test, doi mutanți, două destine", "victor", req="6")
 card(s, 0.7, 1.55, 11.95, 1.0, fill=PANEL)
 text(s, 0.95, 1.65, 3.0, 0.3, "TESTUL ALES (din BVA)", size=10, color=MUTED, bold=True)
 text(s, 0.95, 1.95, 6.0, 0.4, "test_bva_occupied_exactly_at_quota", size=13, color=INK, bold=True, font=MONO)
@@ -965,7 +965,7 @@ for col, spec in enumerate([
         text(s, xx + 0.65, yy + 0.02, 5.0, 0.35, t, size=12, color=INK_2 if k < 3 else INK, bold=(k == 3))
 
 # ============================================================== 18 · TOOLS
-s = new_slide(18, "Testare prin mutații", "mutmut vs. cosmic-ray pe trei seturi de teste", "natalia", req="7")
+s = new_slide(18, "Testare prin mutații", "mutmut vs. cosmic-ray pe trei seturi de teste", "victor", req="7")
 suites = [("functional", "Cerința 1"), ("mcdc", "Cerința 4"), ("combined", "1 + 4")]
 cd = CategoryChartData()
 cd.categories = [lbl for _, lbl in suites]
@@ -996,7 +996,7 @@ plot.data_labels.number_format_is_linked = False
 plot.data_labels.position = XL_LABEL_POSITION.OUTSIDE_END
 plot.data_labels.font.size = Pt(10.5)
 plot.data_labels.font.bold = True
-for ser, c in zip(plot.series, (NATALIA, rgb("A9A2EE"))):
+for ser, c in zip(plot.series, (VICTOR, rgb("8FD3C9"))):
     ser.format.fill.solid()
     ser.format.fill.fore_color.rgb = c
 
@@ -1009,9 +1009,9 @@ table(s, 0.7, 5.25, 5.9, rows, [1.7, 2.1, 2.1], row_h=0.36, size=11,
 
 notes = MUT["notes"]
 for i, (ttl, body, c) in enumerate([
-    ("Operatori diferiți", notes["operators"], NATALIA),
+    ("Operatori diferiți", notes["operators"], VICTOR),
     ("Ce supraviețuiește", notes["survivors"], AMBER),
-    ("Cerința 1 vs. Cerința 4", notes["suites"], VICTOR),
+    ("Cerința 1 vs. Cerința 4", notes["suites"], NATALIA),
 ]):
     yy = 1.55 + i * 1.75
     card(s, 7.0, yy, 5.65, 1.6, fill=WHITE, line=LINE, accent=c)
@@ -1028,8 +1028,8 @@ for i, (big, small) in enumerate(kpis):
     text(s, xx + 0.25, 1.65, 2.4, 0.7, big, size=32, color=INK, bold=True)
     text(s, xx + 0.25, 2.38, 2.4, 0.4, small, size=11.5, color=MUTED)
 lessons = [
-    ("Tehnicile se completează", "BVA prinde erorile off-by-one, CEG combinațiile logice, EP domeniile uitate.", VICTOR),
-    ("Acoperirea nu e suficientă", "100% ramuri nu garantează că un < nu a devenit ≤ — mutațiile o arată.", NATALIA),
+    ("Tehnicile se completează", "BVA prinde erorile off-by-one, CEG combinațiile logice, EP domeniile uitate.", NATALIA),
+    ("Acoperirea nu e suficientă", "100% ramuri nu garantează că un < nu a devenit ≤ — mutațiile o arată.", VICTOR),
     ("Scurtcircuitarea ascunde defecte", "O condiție evaluată leneș poate face un test „orb” la o mutație.", AMBER),
 ]
 for i, (t, b, c) in enumerate(lessons):
@@ -1045,7 +1045,7 @@ text(s, 8.7, 3.32, 3.8, 2.4,
      size=11, color=rgb("C9D4E0"), spacing=6)
 text(s, 0.7, 6.2, 11.95, 0.4,
      [[{"t": "Cod, teste, documentație: ", "bold": True}, {"t": "github.com/victormura/tss", "font": MONO},
-       "   ·   ", {"t": "Întrebări?", "bold": True, "color": NATALIA}]], size=13, color=INK_2)
+       "   ·   ", {"t": "Întrebări?", "bold": True, "color": VICTOR}]], size=13, color=INK_2)
 
 prs.save(OUT_PPTX)
 print("saved", OUT_PPTX, "slides:", len(prs.slides))

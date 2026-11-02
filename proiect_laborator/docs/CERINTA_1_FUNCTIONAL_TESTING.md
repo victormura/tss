@@ -1,6 +1,6 @@
 # Cerința 1: Testare Funcțională (Black-Box)
 
-**Autor:** Victor Mura (50% contribuție)  
+**Autor:** Natalia Moroz (50% contribuție)  
 **Fișiere de test:** [`tests/test_ep.py`](../tests/test_ep.py), [`tests/test_bva.py`](../tests/test_bva.py), [`tests/test_ceg.py`](../tests/test_ceg.py)
 
 ---

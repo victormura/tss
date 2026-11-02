@@ -1,6 +1,6 @@
 # Cerința 2: Analiză Comparativă a Nivelului de Acoperire de Cod (Code Coverage)
 
-**Autor:** Victor Mura (50% contribuție)  
+**Autor:** Natalia Moroz (50% contribuție)  
 **Utilitar de acoperire utilizat:** `coverage.py` v7.13.0 via `pytest-cov` v5.0.0 (cu opțiunea de branch coverage `--cov-branch`).
 
 ---

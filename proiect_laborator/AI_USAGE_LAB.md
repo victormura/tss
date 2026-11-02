@@ -15,8 +15,8 @@ Toate conceptele teoretice, deciziile arhitecturale și validările au fost stab
   - Am calibrat complexitatea ciclomatică la $V(G) = 7$ pentru a permite desenarea manuală și auditarea riguroasă a celor 7 căi liniar independente.
   - Am proiectat special condiția de acces EV ca o expresie booleană compusă cu 4 termeni pentru a oferi o bază solidă criteriului **MC/DC**.
 - **Partajarea Efortului (50% - 50%):**
-  - **Victor Mura (50%):** Proiectarea și implementarea seturilor de teste funcționale (Cerința 1: EP, BVA, CEG), analiza comparativă de acoperire prin cod (Cerința 2: `pytest-cov`), scrierea mutantului de ordin 1 echivalent și demonstrația matematică a echivalenței (Cerința 5).
-  - **Natalia Moroz (50%):** Proiectarea grafului orientat de control și calculul căilor independente (Cerința 3), proiectarea tabelelor decizionale și a setului MC/DC (Cerința 4), scrierea manuală a celor doi mutanți ne-echivalenți omorât vs. neomorât (Cerința 6), configurarea, execuția și analiza comparativă a celor două unelte de mutații `mutmut` și `cosmic-ray` (Cerința 7).
+  - **Natalia Moroz (50%):** Proiectarea și implementarea seturilor de teste funcționale (Cerința 1: EP, BVA, CEG), analiza comparativă de acoperire prin cod (Cerința 2: `pytest-cov`), scrierea mutantului de ordin 1 echivalent și demonstrația matematică a echivalenței (Cerința 5).
+  - **Victor Mura (50%):** Proiectarea grafului orientat de control și calculul căilor independente (Cerința 3), proiectarea tabelelor decizionale și a setului MC/DC (Cerința 4), scrierea manuală a celor doi mutanți ne-echivalenți omorât vs. neomorât (Cerința 6), configurarea, execuția și analiza comparativă a celor două unelte de mutații `mutmut` și `cosmic-ray` (Cerința 7).
 
 ---
 

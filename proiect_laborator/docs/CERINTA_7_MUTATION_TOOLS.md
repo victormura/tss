@@ -1,6 +1,6 @@
 # Cerința 7: Generarea Automată a Mutanților cu Două Unelte (Mutation Tools)
 
-**Autor:** Natalia Moroz (50% contribuție)  
+**Autor:** Victor Mura (50% contribuție)  
 **Unelte utilizate:**  
 1. **Tool 1:** `mutmut` v2.4.4 (Sistem nativ de mutații bazat pe rescriere de cod sursă)  
 2. **Tool 2:** `cosmic-ray` v8.7.0 (Framework avansat de mutation testing bazat pe manipularea AST-ului Python)

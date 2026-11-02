@@ -1,6 +1,6 @@
 # Cerința 4: Modified Condition / Decision Coverage (MC/DC)
 
-**Autor:** Natalia Moroz (50% contribuție)  
+**Autor:** Victor Mura (50% contribuție)  
 **Fișier de test:** [`tests/test_mcdc.py`](../tests/test_mcdc.py)
 
 ---
