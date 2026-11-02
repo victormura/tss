@@ -1,0 +1,306 @@
+[job-id] f5c1aa84ac864d4e8f5770495cd2a0da
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_Add 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 5f72423e37b14e79bf16f57766e3e140
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_Mul 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] def5fd1adc4940ed96c9776efa2d92c9
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_Div 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] abc545288ee148d7bbacf4b90fc52a1c
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_FloorDiv 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 5925cc55d77a4649a9d1a2c83e1ad1e9
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_Mod 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] d83dd9c8ca7f4007b44596aa1f7b87ba
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_Pow 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 58f80b2261bf43de93015d454ae8a87d
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_RShift 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 86e20acbe0624e5bb82d42c290115e44
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_LShift 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] fe406f1662f54bf89d4e6a3541216528
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_BitOr 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] bec5583df33742bcb9156ab808b812df
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_BitAnd 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 71a8f01d85b4437e9c0c2b1c07b3588d
+src/parking_gate.py core/ReplaceBinaryOperator_Sub_BitXor 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 419f0fbfd81e4494b0641e838e7d269f
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_NotEq 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 9a8afe67b97e44459f204369275cf305
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_NotEq 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] e570d143b82c4fec99827d05a65c6432
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_Lt 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] a8b1fbeb3bfc43f8adbe4e0baea10393
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_Lt 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 78eea56c72774156b6e88e8e4b7a68f5
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_LtE 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] b8f4dee2685244a7bdda6491dd02560e
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_LtE 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 4781757a69aa4c35aa8bf4e06bd0578a
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_Gt 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] d76259f440af485598d4fb3f6ce9d3a3
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_Gt 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 5d06b72be2804980b121e9f7140370da
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_GtE 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 66cabf169e1348258a3d240b27ece9ae
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_GtE 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 8624777770474e4d8e642809c1eea609
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_Is 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] e083d46c097a4a0d9cd2bd92b830a07d
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_Is 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 990210e3e90c4257b32151fec0bdf19e
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_IsNot 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] e3010e2037344001a157dd2a2aa62811
+src/parking_gate.py core/ReplaceComparisonOperator_Eq_IsNot 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 5930c899895144f0a0fcd32782c235c8
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_Eq 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] d51d6ad2fba84467a8771eef924fb415
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_Eq 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] c31fe46bef204a89bd9a33c445c95692
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_Eq 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 7fcb3af7eec04e569b86ba01cab7a70f
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_Eq 3
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 83650ed781c34008a3d165f72bbed2c1
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_NotEq 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 87cf6791fa994f4eacff3a381f209296
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_NotEq 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 5194923a95764b909976e868ce65ba70
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_NotEq 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 5467f5393d6746629b12a30f175d636b
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_NotEq 3
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] b8e8780cc19c4654b0ae6322cd707b88
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_LtE 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] b79359c67a31400491c01d4931d9a4f4
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_LtE 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] fd69722ffc8d45418a01a0728245321e
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_LtE 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] bf540cf58b4843d39ad7af1959ec0980
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_LtE 3
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 59b81ebc980c449fb8dfd38474455947
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_Gt 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] baf3b96237fb4ef7bd6e31c12a191a60
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_Gt 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 9e1be549f9be4244940f3f1687bbd8d1
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_Gt 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 8176ec954f73453a85afc0c703110f15
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_Gt 3
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 39881f69244a4de79b4615461b3c26bd
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_GtE 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 0b179516d07242d5b5d8e16288092382
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_GtE 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 4c6d27a5045c44a99e3942c8b06dfd8e
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_GtE 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] ec0fb12edf574e4a9d11d7496f4a4ede
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_GtE 3
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 1a8f5257f15948599db9c3ee47d329af
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_Is 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] b66958e988724326bf0adad71edddaf7
+src/parking_gate.py core/ReplaceComparisonOperator_Lt_IsNot 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] a9a5eb0893fa4094a474d88476d57919
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_Eq 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] c0004794b09b41dd8bb165dffc59fb61
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_Eq 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 366e44f2d7b4401d9a4870bf44f8b84a
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_Eq 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 3ef2582094d54bd39e15bd05eef37f45
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_NotEq 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 68b5aa0745f54ce7aa6c78e885965238
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_NotEq 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] c34aaf7a903d449cabad4f4b4f16aeb3
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_NotEq 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 772de3d0efda453abb1d81b1c342644a
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_Lt 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 1245be8eab7d44b2abea4f0f3ee151eb
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_Lt 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] c87f663310d9463cb38fa7f7e94258cb
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_Lt 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] ca03991434734e14914f0efbc7c55b62
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_Gt 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 049a216129ae4aeeaeec375d6e287ac1
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_Gt 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 6fd6bb4322c844ee925bbb57897b85a7
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_Gt 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] d13a2c5bb79249089e52f7e0d38342e8
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_GtE 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] e813161717be4903af7e36d17b063db5
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_GtE 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] a0f2df924cf345c4a68819547fa40f60
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_GtE 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 7ba3bb99d8904222b50687df90925ba6
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_Is 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 43a7fc3cc9f1488989f1bc767d1c20d0
+src/parking_gate.py core/ReplaceComparisonOperator_LtE_IsNot 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 09cd5ea3fbed440dbe4de28dfbaefdd9
+src/parking_gate.py core/ReplaceComparisonOperator_Gt_Eq 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 6b41ce2a9fb74130a1365883104cf7e0
+src/parking_gate.py core/ReplaceComparisonOperator_Gt_NotEq 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 4b205ed90a2842b78aee54b0e25f54ff
+src/parking_gate.py core/ReplaceComparisonOperator_Gt_Lt 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 239547cc81454961b1e68c772a0858f9
+src/parking_gate.py core/ReplaceComparisonOperator_Gt_LtE 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] d90d1fbba86d41d89ff5887e6247b0aa
+src/parking_gate.py core/ReplaceComparisonOperator_Gt_GtE 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 4fa3b4401ea94b10813dc5028cf2f4c9
+src/parking_gate.py core/ReplaceUnaryOperator_Delete_Not 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] b8a5688272c647218f394ecbffd48152
+src/parking_gate.py core/ReplaceUnaryOperator_Delete_Not 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 7e62e4f3318a4684b7221a19e727c8cf
+src/parking_gate.py core/ReplaceUnaryOperator_Delete_Not 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 4dfec3e208b346399a55deed9ff40e66
+src/parking_gate.py core/AddNot 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 20a8bdd80d034a80a40832090b65d3be
+src/parking_gate.py core/AddNot 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 3ce370ba4f0d431f925871e4ed08d6c7
+src/parking_gate.py core/AddNot 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] ce0665dec0ca41e2a98e8f2ead8f04cc
+src/parking_gate.py core/AddNot 3
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] bb0ebb12987b4370b333703496525410
+src/parking_gate.py core/AddNot 4
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] cf2471f547164ff58ac78ed622e99bb1
+src/parking_gate.py core/AddNot 5
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 14f06d650025448192debad4cd2e08da
+src/parking_gate.py core/ReplaceAndWithOr 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 84d4116e6bdd4198815b7de402c250b3
+src/parking_gate.py core/ReplaceAndWithOr 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] d62e55472c584186a0524aefee45054d
+src/parking_gate.py core/ReplaceAndWithOr 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] c6c6ecc77d714eb691c0a4fbd2d3861d
+src/parking_gate.py core/ReplaceAndWithOr 3
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] 31aed01b21814f2fa496aa6f6cfd9f7d
+src/parking_gate.py core/ReplaceOrWithAnd 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] f802744812614d1cb937498b3d1331bd
+src/parking_gate.py core/ReplaceOrWithAnd 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 2050f6c4fcdf4476841ac5b5cf5e2dac
+src/parking_gate.py core/ReplaceOrWithAnd 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] d8d746ed034b43ad8a379c6882d8064a
+src/parking_gate.py core/ReplaceOrWithAnd 3
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.KILLED
+[job-id] ebc188c9dec14e26b0f9a49ff670090c
+src/parking_gate.py core/ReplaceOrWithAnd 4
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 121647012bd643eea6332dc535c85cfa
+src/parking_gate.py core/NumberReplacer 0
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] cf4e797511cf491195f2394cd80e45ff
+src/parking_gate.py core/NumberReplacer 1
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] c3faa24d1e3444b88f267e2f894741d2
+src/parking_gate.py core/NumberReplacer 2
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 7f5f93f4bfeb4cc39cdc6377395a2966
+src/parking_gate.py core/NumberReplacer 3
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] b949e5372a51430ebf66dea766793f88
+src/parking_gate.py core/NumberReplacer 4
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] eec3c275f92e493da52bf1bfc255a42e
+src/parking_gate.py core/NumberReplacer 5
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 59982b9db2194b3aba5f7eda08c4118a
+src/parking_gate.py core/NumberReplacer 6
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 9c63fb010e1846889cf934917f1dc5c2
+src/parking_gate.py core/NumberReplacer 7
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] e9fb018d46ba42c79c1ac6c919b599d1
+src/parking_gate.py core/NumberReplacer 8
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 3062989913564aff993001bf9a273a97
+src/parking_gate.py core/NumberReplacer 9
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] d922744fc3864d26990c6c1c36c9d039
+src/parking_gate.py core/NumberReplacer 10
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 52a9d593ff664c838077566ea562a655
+src/parking_gate.py core/NumberReplacer 11
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] 237896816aa2469ba22396c61e855feb
+src/parking_gate.py core/NumberReplacer 12
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+[job-id] b758c66510bc44e88c92000e15366aee
+src/parking_gate.py core/NumberReplacer 13
+worker outcome: WorkerOutcome.NORMAL, test outcome: TestOutcome.SURVIVED
+total jobs: 101
+complete: 101 (100.00%)
+surviving mutants: 51 (50.50%)

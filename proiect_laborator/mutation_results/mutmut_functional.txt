@@ -1,0 +1,12 @@
+To apply a mutant on disk:
+    mutmut apply <id>
+
+To show a mutant:
+    mutmut show <id>
+
+
+Survived 🙁 (11)
+
+---- src/parking_gate.py (11) ----
+
+1-9, 19, 33
