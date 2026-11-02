@@ -1,0 +1,27 @@
+cabal-version:      2.4
+name:               foundational-pbt-demo
+version:            0.1.0.0
+synopsis:           Foundational Property-Based Testing Demo in Haskell
+description:        Demonstrates the differences between Ordinary Property-Based Testing
+                    and Foundational Property-Based Testing (ITP 2015).
+build-type:         Simple
+
+executable foundational-pbt-demo
+  main-is:          Main.hs
+  other-modules:    FoundationalPBT
+  hs-source-dirs:   .
+  default-language: Haskell2010
+  ghc-options:      -Wall -Wcompat -Widentities
+  build-depends:
+      base >= 4.14 && < 5
+    , containers >= 0.6
+
+executable quickcheck-official
+  main-is:          QuickCheckOfficial.hs
+  hs-source-dirs:   .
+  default-language: Haskell2010
+  ghc-options:      -Wall -Wcompat -Widentities
+  build-depends:
+      base >= 4.14 && < 5
+    , containers >= 0.6
+    , QuickCheck >= 2.14

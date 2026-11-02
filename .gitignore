@@ -1,0 +1,38 @@
+# OS
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.hypothesis/
+.mutmut-cache/
+.mutmut-cache
+**/.mutmut-cache*
+*.sqlite3
+
+# Haskell (demo)
+demo/dist-newstyle/
+dist-newstyle/
+.cabal-sandbox/
+cabal.sandbox.config
+*.hi
+*.o
+*.dyn_o
+*.dyn_hi
+
+# Presentation & Office temp
+presentation/.build/
+~$*
+.build/

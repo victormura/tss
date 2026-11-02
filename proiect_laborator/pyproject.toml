@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smart-parking-gate"
+version = "1.0.0"
+description = "Sistem de Control Acces Parcare Corporate - Proiect Laborator TSS"
+readme = "docs/SPECIFICATIE_CERINTE.md"
+requires-python = ">=3.9"
+authors = [
+    { name = "Victor Mura", email = "victormura.s@gmail.com" },
+    { name = "Natalia Moroz", email = "nataliamoroz.mm@gmail.com" },
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --strict-markers"
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+
+[tool.mutmut]
+paths_to_mutate = "src/parking_gate.py"
+runner = "pytest"
