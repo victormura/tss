@@ -501,42 +501,50 @@ text(s, 9.25, 5.05, 2.9, 0.8, "24", size=44, color=VICTOR, bold=True)
 text(s, 9.25, 5.82, 2.9, 0.8, ["cazuri de test", "tests/test_bva.py"], size=11.5, color=INK_2)
 
 # ============================================================== 08 · CEG GRAPH
-s = new_slide(8, "Testare funcțională", "Graful cauză-efect", "victor", req="1c")
-causes = ["C1  tier = VIP", "C2  tier = CONTRACTOR", "C3  ore de vârf", "C4  vehicul electric",
-          "C5  stație EV liberă", "C6  ocupate < cotă", "C7  overflow permis", "C8  depășire < 5"]
+s = new_slide(8, "Testare funcțională", "Graful cauză-efect (CEG) — Sintaxă Myers", "victor", req="1c")
+causes = ["C1  tier = VIP", "C2  tier = CONTRACTOR", "C3  ore de vârf (08–17)", "C4  vehicul electric (EV)",
+          "C5  stație EV liberă", "C6  ocupate < cotă", "C7  overflow permis", "C8  depășire cotă < 5"]
 cy = {}
 for i, c in enumerate(causes):
     yy = 1.55 + i * 0.62
-    b = box(s, 0.7, yy, 2.55, 0.44, fill=VICTOR_L, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.3)
-    shape_text(b, c, size=10.5, color=INK, align=PP_ALIGN.LEFT, margin=0.12)
+    b = box(s, 0.75, yy, 2.50, 0.44, fill=VICTOR_L, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.3)
+    shape_text(b, c, size=10, color=INK, align=PP_ALIGN.LEFT, margin=0.10)
     cy[i + 1] = yy + 0.22
 CX = 3.25  # right edge of causes
+
+# Constrângerea E(C1, C2) pe stânga cauzelor
+arrow(s, 0.75, cy[1], 0.50, cy[1], color=RED, width=1.4, head=False, dash=True)
+arrow(s, 0.50, cy[1], 0.50, cy[2], color=RED, width=1.4, head=False, dash=True)
+arrow(s, 0.50, cy[2], 0.75, cy[2], color=RED, width=1.4, head=False, dash=True)
+pill(s, 0.36, (cy[1] + cy[2]) / 2 - 0.15, 0.28, 0.30, "E", fill=RED, size=10, bold=True)
 
 effects = [(1, "E1  GRANTED_VIP", GREEN_L, GREEN), (2, "E2  DENIED_HOURS", RED_L, RED),
            (3, "E3  GRANTED_EV", GREEN_L, GREEN), (4, "E4  GRANTED_REGULAR", GREEN_L, GREEN),
            (5, "E5  PAID_OVERFLOW", AMBER_L, AMBER), (6, "E6  DENIED_QUOTA", RED_L, RED)]
-ey = {1: cy[1], 2: 2.62, 3: 3.95, 4: cy[6], 5: 5.6, 6: 6.35}
-EX = 8.35
+ey = {1: cy[1], 2: 2.62, 3: 3.95, 4: cy[6], 5: 5.60, 6: 6.35}
+EX = 7.75
 for k, lbl, fill, c in effects:
-    b = box(s, EX, ey[k] - 0.22, 2.5, 0.44, fill=fill, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.3)
-    shape_text(b, lbl, size=10, color=c, bold=True, font=MONO, align=PP_ALIGN.LEFT, margin=0.12)
+    b = box(s, EX, ey[k] - 0.22, 2.55, 0.44, fill=fill, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.3)
+    shape_text(b, lbl, size=9.5, color=c, bold=True, font=MONO, align=PP_ALIGN.LEFT, margin=0.10)
 
-R = 0.25
+R = 0.24
 
 
-def gate(slide, cx_, cy_, label):
-    g = box(slide, cx_ - R, cy_ - R, 2 * R, 2 * R, fill=WHITE, line=INK, line_w=1.25, shape=MSO_SHAPE.OVAL)
-    shape_text(g, label, size=7.5, color=INK, bold=True, margin=0)
+def gate(slide, cx_, cy_, symbol, sub=None):
+    g = box(slide, cx_ - R, cy_ - R, 2 * R, 2 * R, fill=WHITE, line=INK, line_w=1.4, shape=MSO_SHAPE.OVAL)
+    shape_text(g, symbol, size=14, color=INK, bold=True, margin=0)
+    if sub:
+        text(slide, cx_ - 0.25, cy_ + R - 0.02, 0.50, 0.22, sub, size=8, color=MUTED, align=PP_ALIGN.CENTER)
     return (cx_, cy_)
 
 
-I1 = gate(s, 4.15, cy[3], "NOT")
-I3 = gate(s, 4.15, (cy[4] + cy[5]) / 2, "AND")
-I2 = gate(s, 5.45, 2.62, "AND")
-I4 = gate(s, 5.45, 4.5, "OR")
-I6 = gate(s, 5.45, 5.75, "OR")
-I5 = gate(s, 6.85, 3.95, "AND")
-I7 = gate(s, 6.85, 5.6, "AND")
+I1 = gate(s, 3.95, cy[3], "~", "I1: ¬C3")
+I3 = gate(s, 3.95, (cy[4] + cy[5]) / 2, "∧", "I3: C4∧C5")
+I2 = gate(s, 5.20, 2.62, "∧", "I2: C2∧I1")
+I4 = gate(s, 5.20, 4.50, "∨", "I4: I1∨C6")
+I6 = gate(s, 5.20, 5.75, "∨", "I6: I1∨C8")
+I5 = gate(s, 6.45, 3.95, "∧", "I5: I3∧I4")
+I7 = gate(s, 6.45, 5.60, "∧", "I7: C7∧I6")
 
 
 def link(a, b, color=MUTED, dash=False):
@@ -571,57 +579,122 @@ arrow(s, CX, cy[6], EX, ey[4], color=GREEN, width=1.5)        # C6 -> E4
 link(I1, I6); from_cause(8, I6)
 from_cause(7, I7); link(I6, I7)
 to_effect(I7, 5, AMBER)
-text(s, 7.0, 6.22, 1.3, 0.3, "altfel →", size=10, color=MUTED, italic=True, align=PP_ALIGN.RIGHT)
+text(s, 6.40, 6.22, 1.25, 0.3, "altfel →", size=10, color=MUTED, italic=True, align=PP_ALIGN.RIGHT)
 
 # legend / constraints
-card(s, 11.15, 1.55, 1.5, 4.95, fill=PANEL)
-text(s, 11.3, 1.7, 1.25, 4.7,
-     [[{"t": "Constrângere", "bold": True}], "E(C1, C2): un angajat nu poate fi VIP și contractor.", "",
-      [{"t": "Porți", "bold": True}], "NOT = ore off-peak", "AND/OR = condiții compuse", "",
-      [{"t": "Prioritate", "bold": True}], "E1 > E2 > E3 > E4 > E5 > E6"],
-     size=9.5, color=INK_2, spacing=2)
+card(s, 10.55, 1.55, 2.10, 5.0, fill=PANEL)
+text(s, 10.70, 1.70, 1.80, 4.70,
+     [[{"t": "Sintaxă Curs (Myers)", "bold": True, "size": 11, "color": INK}],
+      "",
+      [{"t": "Relații logice:", "bold": True, "size": 9.5}],
+      " —>  Identitate (if C)",
+      "  ~   NOT (if ¬C)",
+      "  ∧   AND (if C1 ∧ C2)",
+      "  ∨   OR (if C1 ∨ C2)",
+      "",
+      [{"t": "Constrângere:", "bold": True, "size": 9.5}],
+      [{"t": "E(C1, C2)", "bold": True, "color": RED}, " Exclusivitate"],
+      "C1 + C2 ≤ 1 (tier unic)",
+      "",
+      [{"t": "Prioritate (Măști):", "bold": True, "size": 9.5}],
+      "E1 > E2 > E3 > E4 > E5 > E6",
+      "Evaluare în cascadă"],
+     size=9, color=INK_2, spacing=2)
 
 # ============================================================== 09 · CEG TABLE
-s = new_slide(9, "Testare funcțională", "Din graf în tabel de decizie: 9 reguli → 9 teste", "victor", req="1c")
+s = new_slide(9, "Testare funcțională", "Tabelul de decizie Myers: 9 reguli de testare", "victor", req="1c")
 D = "–"
-rules = [
-    ("R1", "1", "0", D, D, D, D, D, D, "E1 VIP"),
-    ("R2", "0", "1", "0", D, D, D, D, D, "E2 HOURS ✕"),
-    ("R3", "0", "0", "0", "1", "1", D, D, D, "E3 EV"),
-    ("R4", "0", "0", "1", "1", "1", "1", D, D, "E3 EV"),
-    ("R5", "0", "0", D, "0", D, "1", D, D, "E4 REGULAR"),
-    ("R6", "0", "0", "0", "0", D, "0", "1", D, "E5 OVERFLOW"),
-    ("R7", "0", "0", "1", "0", D, "0", "1", "1", "E5 OVERFLOW"),
-    ("R8", "0", "0", "1", "0", D, "0", "1", "0", "E6 QUOTA ✕"),
-    ("R9", "0", "0", D, "0", D, "0", "0", D, "E6 QUOTA ✕"),
+cols = ["Condiție / Efect", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9"]
+table_rows = [
+    cols,
+    ["C1  tier = VIP", "1", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["C2  tier = CONTRACTOR", "0", "1", "0", "0", "0", "0", "0", "0", "0"],
+    ["C3  ore de vârf (08–17)", D, "0", "0", "1", D, "0", "1", "1", D],
+    ["C4  vehicul electric", D, D, "1", "1", "0", "0", "0", "0", "0"],
+    ["C5  stație EV liberă", D, D, "1", "1", D, D, D, D, D],
+    ["C6  ocupate < cotă", D, D, D, "1", "1", "0", "0", "0", "0"],
+    ["C7  overflow permis", D, D, D, D, D, "1", "1", "1", "0"],
+    ["C8  depășire cotă < 5", D, D, D, D, D, D, "1", "0", D],
+    ["E1  GRANTED_VIP", "1", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["E2  DENIED_HOURS", "0", "1", "0", "0", "0", "0", "0", "0", "0"],
+    ["E3  GRANTED_EV", "0", "0", "1", "1", "0", "0", "0", "0", "0"],
+    ["E4  GRANTED_REGULAR", "0", "0", "0", "0", "1", "0", "0", "0", "0"],
+    ["E5  PAID_OVERFLOW", "0", "0", "0", "0", "0", "1", "1", "0", "0"],
+    ["E6  DENIED_QUOTA", "0", "0", "0", "0", "0", "0", "0", "1", "1"],
+    ["Decizie așteptată", "E1", "E2", "E3", "E3", "E4", "E5", "E5", "E6", "E6"],
 ]
-rows = [["Regulă", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "Efect"]] + [list(r) for r in rules]
-fills, colors = {}, {}
-for i, r in enumerate(rules, start=1):
-    for j in range(1, 9):
-        if r[j] == "1":
-            fills[(i, j)] = VICTOR_L
-            colors[(i, j)] = VICTOR
-        elif r[j] == D:
-            colors[(i, j)] = rgb("B4BECB")
-    eff = r[9]
-    c = GREEN if eff.startswith(("E1", "E3", "E4")) else AMBER if eff.startswith("E5") else RED
-    colors[(i, 9)] = c
-center = {j: PP_ALIGN.CENTER for j in range(0, 9)}
-table(s, 0.7, 1.6, 8.6, rows, [0.95] + [0.68] * 8 + [2.21], row_h=0.44, size=11.5, fills=fills,
-      colors=colors, aligns=center, bolds={(i, j): True for i in range(1, 10) for j in (0, 9)}, zebra=None)
-card(s, 9.65, 1.6, 3.0, 4.4, fill=PANEL)
-text(s, 9.9, 1.8, 2.6, 4.0,
-     [[{"t": "Cum citim tabelul", "bold": True, "size": 13}],
-      [{"t": "1", "bold": True, "color": VICTOR}, " = cauza trebuie să fie adevărată"],
-      [{"t": "0", "bold": True}, " = cauza trebuie să fie falsă"],
-      [{"t": "–", "bold": True, "color": rgb("B4BECB")}, " = nu contează"], "",
-      "Fiecare regulă devine exact un caz de test în tests/test_ceg.py.", "",
-      "Cel mai mic set funcțional (9 teste), dar acoperă toate combinațiile logice ale specificației."],
-     size=11, color=INK_2, spacing=4)
-text(s, 0.7, 6.25, 8.6, 0.5,
-     "C1 VIP · C2 contractor · C3 vârf · C4 EV · C5 stație liberă · C6 în cotă · C7 overflow permis · C8 depășire < 5",
-     size=10, color=MUTED)
+
+fills, colors, bolds = {}, {}, {}
+for r_idx in range(1, 9):
+    bolds[(r_idx, 0)] = True
+    for c_idx in range(1, 10):
+        val = table_rows[r_idx][c_idx]
+        if val == "1":
+            fills[(r_idx, c_idx)] = VICTOR_L
+            colors[(r_idx, c_idx)] = VICTOR
+            bolds[(r_idx, c_idx)] = True
+        elif val == D:
+            colors[(r_idx, c_idx)] = rgb("94A3B8")
+        else:
+            colors[(r_idx, c_idx)] = INK_2
+
+for r_idx in range(9, 15):
+    eff_label = table_rows[r_idx][0]
+    eff_color = GREEN if eff_label.startswith(("E1", "E3", "E4")) else AMBER if eff_label.startswith("E5") else RED
+    colors[(r_idx, 0)] = eff_color
+    bolds[(r_idx, 0)] = True
+    for c_idx in range(1, 10):
+        val = table_rows[r_idx][c_idx]
+        if val == "1":
+            fills[(r_idx, c_idx)] = GREEN_L if eff_color == GREEN else AMBER_L if eff_color == AMBER else RED_L
+            colors[(r_idx, c_idx)] = eff_color
+            bolds[(r_idx, c_idx)] = True
+        else:
+            colors[(r_idx, c_idx)] = rgb("CBD5E1")
+
+bolds[(15, 0)] = True
+colors[(15, 0)] = INK
+for c_idx in range(1, 10):
+    dec = table_rows[15][c_idx]
+    c = GREEN if dec in ("E1", "E3", "E4") else AMBER if dec == "E5" else RED
+    bg = GREEN_L if dec in ("E1", "E3", "E4") else AMBER_L if dec == "E5" else RED_L
+    colors[(15, c_idx)] = c
+    fills[(15, c_idx)] = bg
+    bolds[(15, c_idx)] = True
+
+aligns = {j: PP_ALIGN.CENTER for j in range(1, 10)}
+aligns[0] = PP_ALIGN.LEFT
+col_widths = [2.25] + [0.57] * 9
+
+table(s, 0.7, 1.55, 7.38, table_rows, col_widths, row_h=0.28, size=9.5, head_size=9.5,
+      fills=fills, colors=colors, bolds=bolds, aligns=aligns, zebra=None)
+
+text(s, 0.7, 6.18, 7.4, 0.4,
+     "Format standard de curs (Myers): N = p + q = 14 linii de cauze/efecte, 9 reguli pe coloane · tests/test_ceg.py",
+     size=9, color=MUTED, italic=True)
+
+# Right Panel: Derivation Procedure
+card(s, 8.30, 1.55, 4.35, 4.90, fill=PANEL)
+text(s, 8.50, 1.70, 3.95, 4.60,
+     [[{"t": "Procedura de Derivare (Conform Cursului)", "bold": True, "size": 12, "color": INK}],
+      "",
+      [{"t": "1. Pas inițial:", "bold": True, "size": 10, "color": VICTOR}, " nr_coloane = 0 (tabel inițial gol)"],
+      "",
+      [{"t": "2. Backtracking pentru fiecare efect (Ei = 1):", "bold": True, "size": 10, "color": INK}],
+      [{"t": "• E1 = 1", "bold": True, "color": GREEN}, "  ⇒  C1=1  ⇒  ", {"t": "Regula 1 (R1)", "bold": True}, "  (VIP)"],
+      [{"t": "• E2 = 1", "bold": True, "color": RED}, "  ⇒  C2=1 ∧ ¬C3=1  ⇒  ", {"t": "Regula 2 (R2)", "bold": True}, "  (ore)"],
+      [{"t": "• E3 = 1", "bold": True, "color": GREEN}, "  ⇒  C4 ∧ C5 ∧ (¬C3 ∨ C6)  ⇒  ", {"t": "R3, R4", "bold": True}, "  (EV)"],
+      [{"t": "• E4 = 1", "bold": True, "color": GREEN}, "  ⇒  C6=1  ⇒  ", {"t": "Regula 5 (R5)", "bold": True}, "  (regular)"],
+      [{"t": "• E5 = 1", "bold": True, "color": AMBER}, "  ⇒  C7 ∧ (¬C3 ∨ C8)  ⇒  ", {"t": "R6, R7", "bold": True}, "  (overflow)"],
+      [{"t": "• E6 = 1", "bold": True, "color": RED}, "  ⇒  ¬C6 ∧ …  ⇒  ", {"t": "R8, R9", "bold": True}, "  (refuz cotă)"],
+      "",
+      [{"t": "3. Constrângeri & Măști:", "bold": True, "size": 10, "color": INK}],
+      "• Constrângerea E(C1, C2) elimină starea nefezabilă C1=1 ∧ C2=1.",
+      "• Măștile de prioritate elimină combinațiile redundante.",
+      "",
+      [{"t": "4. Rezultat:", "bold": True, "size": 10, "color": VICTOR}, " 9 reguli minimale ⇒ ",
+       {"t": "9 teste automate în tests/test_ceg.py", "bold": True}, "."]],
+     size=9.5, color=INK_2, spacing=3)
 
 # ============================================================== 10 · COVERAGE
 s = new_slide(10, "Acoperire de cod", "Același cod, trei seturi de teste, trei rezultate", "victor", req="2")
