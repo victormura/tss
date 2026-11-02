@@ -2,9 +2,9 @@
   "mutmut": {
     "functional": {
       "total": 40,
-      "killed": 29,
-      "survived": 11,
-      "score": 72.5
+      "killed": 39,
+      "survived": 1,
+      "score": 97.5
     },
     "mcdc": {
       "total": 40,
@@ -14,17 +14,17 @@
     },
     "combined": {
       "total": 40,
-      "killed": 30,
-      "survived": 10,
-      "score": 75.0
+      "killed": 40,
+      "survived": 0,
+      "score": 100.0
     }
   },
   "cosmic_ray": {
     "functional": {
       "total": 101,
-      "killed": 97,
-      "survived": 4,
-      "score": 96.04
+      "killed": 98,
+      "survived": 3,
+      "score": 97.03
     },
     "mcdc": {
       "total": 101,
@@ -34,14 +34,14 @@
     },
     "combined": {
       "total": 101,
-      "killed": 98,
-      "survived": 3,
-      "score": 97.03
+      "killed": 99,
+      "survived": 2,
+      "score": 98.02
     }
   },
   "notes": {
     "operators": "mutmut generează 40 de mutanți (înlocuiri de literali, enum-uri și operatori relaționali). cosmic-ray generează 101 mutanți axați pe rotația completă a operatorilor de comparație (Lt_Eq, LtE_Lt), operatorilor booleeni (And_Or) și mutarea numerelor.",
-    "survivors": "La mutmut, cei 10 mutanți supraviețuitori în setul combinat sunt declarațiile Enum (1-9) și textul mesajului ValueError (19). La cosmic-ray, doar 3 mutanți din 101 supraviețuiesc (97.03% scor de mutație!).",
-    "suites": "Setul funcțional (Cerința 1) oferă o acoperire largă a tuturor ramurilor (72.5% mutmut / 96.0% cosmic-ray). Setul MC/DC (Cerința 4) este hiperspecializat pe decizia compusă EV (ucide 100% din mutanții acesteia). Combinate, cele două seturi ucid practic toți mutanții semantici."
+    "survivors": "La mutmut, setul combinat ucide 40/40 mutanți (100% scor de mutație!). La cosmic-ray, doar 2 mutanți din 101 supraviețuiesc (98.02% scor brut), ambii fiind mutanți matematic echivalenți (== înlocuit cu is pe membri Enum). Scorul de mutație ajustat este 100%.",
+    "suites": "Setul funcțional (Cerința 1) oferă o acoperire largă a tuturor ramurilor (97.5% mutmut / 97.03% cosmic-ray). Setul MC/DC (Cerința 4) este hiperspecializat pe decizia compusă EV (ucide 100% din mutanții acesteia). Combinate, cele două seturi ating 100% eficiență de mutație."
   }
 }

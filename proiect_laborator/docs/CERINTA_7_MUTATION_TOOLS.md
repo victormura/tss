@@ -18,10 +18,10 @@ Ambele unelte au generat mutanți sistematici pe modulul țintă [`src/parking_g
 
 $$\text{Mutation Score} = \frac{\text{Mutanți Omorâți (Killed)}}{\text{Total Mutanți Generați} - \text{Mutanți Echivalenți}} \times 100\%$$
 
-| Unealtă de Mutație | Mutanți Total | Mutanți Omorâți (Killed) | Mutanți Supraviețuiți | Scors Mutație Brut | Scors Ajustat (Fără Echivalenți / Declarativi) |
+| Unealtă de Mutație | Mutanți Total | Mutanți Omorâți (Killed) | Mutanți Supraviețuiți | Scor Mutație Brut | Scor Ajustat (Fără Echivalenți) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Tool 1: `mutmut`** | **40** | **30** | **10** | **75.0%** | **100%** pe logica de decizie internă |
-| **Tool 2: `cosmic-ray`** | **28** | **24** | **4** | **85.7%** | **96.0%** |
+| **Tool 1: `mutmut`** | **40** | **40** | **0** | **100.0%** | **100.0%** |
+| **Tool 2: `cosmic-ray`** | **101** | **99** | **2** | **98.02%** | **100.0%** (2 mutanți `is` echivalenți) |
 
 ---
 
@@ -37,28 +37,33 @@ Diferențele dintre numărul total de mutanți și scorurile obținute provin di
 
 ### 2. Operatorii `cosmic-ray`:
 `cosmic-ray` este strict orientat pe **operatori semantici de control al fluxului și expresii**:
-- `ReplaceComparisonOperator`: Rotație sistematică între toți operatorii relaționali (`Lt_Eq`, `Lt_LtE`, `LtE_Lt`, `Gt_Eq`, etc.).
+- `ReplaceComparisonOperator`: Rotație sistematică între toți operatorii relaționali (`Lt_Eq`, `Lt_LtE`, `LtE_Lt`, `Gt_Eq`, `Eq_Is`, etc.).
 - `ReplaceAndWithOr` și `ReplaceOrWithAnd`: Mutații pe conjuncții și disjuncții booleene.
 - `NumberReplacer`: Mutație pe numere întregi ($0 \to 1, 1 \to 0, n \to n+1$).
-- `ExceptionReplacer`: Înlocuirea tipului de excepție aruncat.
+- `ReplaceBinaryOperator`: Mutații pe operatori aritmetici (ex: `Sub_Add`, `Sub_Mod`).
 - *Nu generează mutații pe constantele din declarațiile de clase `Enum`.*
 
 ---
 
-## 7.3. Explicarea Detaliată a Mutanților Supraviețuiți
+## 7.3. Explicarea Detaliată a Mutanților și a Optimizării Testelor
 
-### De ce au supraviețuit 10 mutanți la `mutmut`?
-Folosind comanda `mutmut results` și `mutmut show <id>`, s-au inspectat cei 10 mutanți supraviețuiți:
-1. **Mutanții 1–9 (Declarații `Enum`):**  
-   `mutmut` a mutat definițiile interne ale enumerărilor:  
-   `REGULAR = auto()` $\implies$ `REGULAR = None`  
-   În Python, membrii de `Enum` sunt rezolvați la importul modulului. Testele unitare utilizează referințele importate; mutarea unui membru nefolosit într-un anumit test nu determină eșecul aserțiunilor funcționale.
-2. **Mutantul 19 (Mesajul excepției `ValueError`):**  
-   Linia 54: `raise ValueError("Parametri de intrare...")` $\implies$ `raise ValueError("XXParametri...")`  
-   În suitele noastre, testele folosesc sintaxa idiomatică `with pytest.raises(ValueError):`, verificând **tipul** excepției, nu textul exact al mesajului. De aceea, mutantul a supraviețuit.
+Inițial, pe setul de bază, supraviețuiseră 10 mutanți la `mutmut` și 3 mutanți la `cosmic-ray`. Printr-o analiză riguroasă a cauzelor, am optimizat suita de teste pentru a atinge eficiență maximă:
 
-### Pe logica decizională a funcției `evaluate_parking_access`:
-Toți cei **30 de mutanți de logică** generați de `mutmut` (operatorii de comparație `<`, `<=`, orele de vârf, condițiile de overflow și stațiile EV) au fost **omorâți 100%** de testele combinate de la Cerința 1 și Cerința 4.
+1. **Uciderea mutanților pe declarațiile `Enum` (Mutanții 1–9 din `mutmut`):**  
+   `mutmut` substituia `auto()` cu `None` (`REGULAR = None`). Am introdus în `tests/test_ep.py` testul `test_ep_enum_integrity`, care verifică aserțiunea `assert member.value is not None` pentru fiecare membru. Toți cei 9 mutanți au fost omorâți instantaneu.
+2. **Uciderea mutantului pe mesajul excepției (Mutantul 19 din `mutmut`):**  
+   Linia 54: `raise ValueError("Parametri de intrare...")` $\implies$ `raise ValueError("XXParametri...")`.  
+   Am ancorat aserțiunile de excepție din `test_ep.py` și `test_bva.py` folosind expresii regulate exacte:  
+   `with pytest.raises(ValueError, match=r"^Parametri de intrare în afara domeniilor valide admise\.$"):`.  
+   Astfel, prefixul `XX...XX` eșuează aserțiunea regex și mutantul este omorât.
+3. **Uciderea mutantului aritmetic `Sub_Mod` din `cosmic-ray`:**  
+   Operatorul înlocuia `overflow_count = occupied - quota` cu `occupied % quota`. Deoarece toate testele inițiale foloseau `quota = 10` și `occupied = 14, 15, 16`, operațiile dădeau același rezultat ($x - 10 \equiv x \pmod{10}$). Am adăugat testul `test_bva_overflow_non_decimal_quota_discriminant` cu `quota = 4` și `occupied = 11`, unde $11 - 4 = 7 \ge 5$ (refuzat), dar $11 \pmod 4 = 3 < 5$ (admis eronat). Mutantul a fost omorât.
+4. **Mutanții supraviețuitori rămași (2 mutanți `Eq_Is` în `cosmic-ray`):**  
+   Singurii 2 mutanți supraviețuitori din întregul proiect sunt:  
+   - `tier == EmployeeTier.VIP` $\to$ `tier is EmployeeTier.VIP`  
+   - `tier == EmployeeTier.CONTRACTOR` $\to$ `tier is EmployeeTier.CONTRACTOR`  
+   În Python, membrii de `Enum` sunt *singletons canonici*. Verificarea de egalitate `==` și verificarea de identitate `is` sunt **100% semantic și matematic echivalente**. Niciun test din lume nu poate ucide acești doi mutanți, fiind un exemplu clasic de mutant echivalent de limbaj.  
+   Scorul ajustat al proiectului este așadar **100.0%**.
 
 ### Comparație între eficacitatea testelor de la Pct 1 vs Pct 4:
 - **Testele de la Punctul 1 (EP + BVA + CEG):** Omoară toți mutanții de pe ramurile de validare a limitelor și fluxurile principale (scor ~70% la mutmut).

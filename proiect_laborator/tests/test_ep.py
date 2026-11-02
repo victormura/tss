@@ -57,7 +57,7 @@ class TestEquivalencePartitioning:
     @pytest.mark.parametrize("invalid_quota", [0, -10], ids=["EP-Q-INV-0", "EP-Q-INV-neg"])
     def test_ep_invalid_quota(self, invalid_quota):
         """EP-Q-INV: Cota <= 0 trebuie să arunce ValueError."""
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match=r"^Parametri de intrare în afara domeniilor valide admise\.$"):
             evaluate_parking_access(
                 company_allocated_quota=invalid_quota,
                 company_current_occupied=0,
@@ -70,7 +70,7 @@ class TestEquivalencePartitioning:
 
     def test_ep_invalid_occupied(self):
         """EP-O-INV: Locuri ocupate negative trebuie să arunce ValueError."""
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match=r"^Parametri de intrare în afara domeniilor valide admise\.$"):
             evaluate_parking_access(
                 company_allocated_quota=10,
                 company_current_occupied=-1,
@@ -84,7 +84,7 @@ class TestEquivalencePartitioning:
     @pytest.mark.parametrize("invalid_hour", [-5, 24, 30], ids=["EP-H-INV-neg", "EP-H-INV-24", "EP-H-INV-30"])
     def test_ep_invalid_entry_hour(self, invalid_hour):
         """EP-H-INV1 & EP-H-INV2: Ora < 0 sau > 23 trebuie să arunce ValueError."""
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match=r"^Parametri de intrare în afara domeniilor valide admise\.$"):
             evaluate_parking_access(
                 company_allocated_quota=10,
                 company_current_occupied=5,
@@ -94,6 +94,13 @@ class TestEquivalencePartitioning:
                 has_ev_spots_available=False,
                 company_allows_overflow=False,
             )
+
+    def test_ep_enum_integrity(self):
+        """Verifică integritatea claselor de echivalență Enum (apartenență și valori non-None)."""
+        for member in EmployeeTier:
+            assert member.value is not None
+        for member in AccessDecision:
+            assert member.value is not None
 
     # --- Teste pentru clasele valide (rezultate funcționale) ---
 

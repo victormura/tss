@@ -1,6 +1,6 @@
 # Cerința 6: Mutanți Ne-Echivalenți (Omorât vs. Neomorât)
 
-**Autor:** Victor Mura (50% contribuție)  
+**Autor:** Natalia Moroz (50% contribuție)  
 **Cod sursă mutanți:** [`mutants/manual_mutants.py`](../mutants/manual_mutants.py)  
 **Test de demonstrare:** [`tests/test_manual_mutants.py`](../tests/test_manual_mutants.py)
 

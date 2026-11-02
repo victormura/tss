@@ -24,7 +24,7 @@ class TestBoundaryValueAnalysis:
 
     def test_bva_quota_below_min_invalid(self):
         """Frontieră q = 0 (min - 1) -> Invalid (aruncă ValueError)."""
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match=r"^Parametri de intrare în afara domeniilor valide admise\.$"):
             evaluate_parking_access(0, 0, 12, EmployeeTier.REGULAR, False, False, False)
 
     def test_bva_quota_at_min_valid(self):
@@ -41,7 +41,7 @@ class TestBoundaryValueAnalysis:
 
     def test_bva_occupied_below_min_invalid(self):
         """Frontieră o = -1 (min - 1) -> Invalid (aruncă ValueError)."""
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match=r"^Parametri de intrare în afara domeniilor valide admise\.$"):
             evaluate_parking_access(10, -1, 12, EmployeeTier.REGULAR, False, False, False)
 
     def test_bva_occupied_at_min_valid(self):
@@ -75,7 +75,7 @@ class TestBoundaryValueAnalysis:
 
     def test_bva_hour_below_absolute_min_invalid(self):
         """Frontieră h = -1 (0 - 1) -> Invalid."""
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match=r"^Parametri de intrare în afara domeniilor valide admise\.$"):
             evaluate_parking_access(10, 5, -1, EmployeeTier.REGULAR, False, False, False)
 
     def test_bva_hour_at_absolute_min(self):
@@ -130,7 +130,7 @@ class TestBoundaryValueAnalysis:
 
     def test_bva_hour_above_absolute_max_invalid(self):
         """Frontieră h = 24 (23 + 1) -> Invalid (aruncă ValueError)."""
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match=r"^Parametri de intrare în afara domeniilor valide admise\.$"):
             evaluate_parking_access(10, 5, 24, EmployeeTier.REGULAR, False, False, False)
 
     # --- 5. Frontiere pentru pragul de overflow la ore de vârf: (occupied - quota < 5) ---
@@ -167,6 +167,24 @@ class TestBoundaryValueAnalysis:
             company_allocated_quota=10,
             company_current_occupied=16,  # diff = 6
             entry_hour=10,                # peak hour
+            tier=EmployeeTier.REGULAR,
+            is_electric_vehicle=False,
+            has_ev_spots_available=False,
+            company_allows_overflow=True,
+        )
+        assert res == AccessDecision.DENIED_QUOTA_EXCEEDED
+
+    def test_bva_overflow_non_decimal_quota_discriminant(self):
+        """
+        Test discriminant împotriva operatorului de mutație Sub_Mod (% în loc de -).
+        Pentru quota=4 și occupied=11:
+          - Corect: 11 - 4 = 7 >= 5 -> DENIED_QUOTA_EXCEEDED
+          - Mutant Sub_Mod (%): 11 % 4 = 3 < 5 -> GRANTED_PAID_OVERFLOW (detectat și ucis)
+        """
+        res = evaluate_parking_access(
+            company_allocated_quota=4,
+            company_current_occupied=11,
+            entry_hour=10,
             tier=EmployeeTier.REGULAR,
             is_electric_vehicle=False,
             has_ev_spots_available=False,

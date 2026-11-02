@@ -1,6 +1,6 @@
 # Cerința 5: Mutant de Ordinul 1 Echivalent
 
-**Autor:** Natalia Moroz (50% contribuție)  
+**Autor:** Victor Mura (50% contribuție)  
 **Cod sursă mutant:** [`mutants/equivalent_mutant.py`](../mutants/equivalent_mutant.py)  
 **Test de validare a echivalenței:** [`tests/test_equivalent_mutant.py`](../tests/test_equivalent_mutant.py)
 

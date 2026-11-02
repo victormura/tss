@@ -1,6 +1,6 @@
 """
 Cerința 5: Mutant de Ordinul 1 Echivalent
-Autor: Natalia Moroz (50% contribuție)
+Autor: Victor Mura (50% contribuție)
 
 Un mutant de ordinul 1 obținut prin modificarea unei singure instrucțiuni (operator relațional).
 Mutantul este SEMANTIC ECHIVALENT cu programul original pentru întregul spațiu de intrare.

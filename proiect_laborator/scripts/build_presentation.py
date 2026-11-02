@@ -298,7 +298,7 @@ text(s, 0.9, 2.55, 7.6, 1.0,
      size=17, color=rgb("C9D4E0"))
 
 # key numbers (right column)
-stats = [("78", "teste automate"), ("V(G) = 7", "complexitate ciclomatică"),
+stats = [("80", "teste automate"), ("V(G) = 7", "complexitate ciclomatică"),
          ("5", "teste MC/DC (N + 1)"), ("2", "unelte de mutație")]
 for i, (big, small) in enumerate(stats):
     yy = 1.05 + i * 1.02
@@ -308,8 +308,8 @@ for i, (big, small) in enumerate(stats):
 
 # people
 for i, (name, reqs, color) in enumerate([
-        ("Victor Mura", "Cerințele 1, 2, 6  ·  testare funcțională, acoperire, mutanți manuali", VICTOR),
-        ("Natalia Moroz", "Cerințele 3, 4, 5, 7  ·  CFG, MC/DC, mutant echivalent, unelte", NATALIA)]):
+        ("Victor Mura", "Cerințele 1, 2, 5  ·  testare funcțională, acoperire, mutant echivalent", VICTOR),
+        ("Natalia Moroz", "Cerințele 3, 4, 6, 7  ·  CFG, MC/DC, mutanți ne-echivalenți, unelte", NATALIA)]):
     xx = 0.9 + i * 4.3
     box(s, xx, 4.7, 4.0, 1.25, fill=rgb("18263B"), shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.08)
     box(s, xx, 4.7, 0.07, 1.25, fill=color)
@@ -327,8 +327,8 @@ agenda = [
     ("2", "Acoperire de cod", "pytest-cov, fiecare set separat", "victor"),
     ("3", "Graf de control", "CFG · V(G) · căi independente", "natalia"),
     ("4", "MC/DC", "decizia compusă EV, 5 teste", "natalia"),
-    ("5", "Mutant echivalent", "ordin 1, demonstrație pe ℤ", "natalia"),
-    ("6", "Mutanți ne-echivalenți", "unul ucis, unul supraviețuitor", "victor"),
+    ("5", "Mutant echivalent", "ordin 1, demonstrație pe ℤ", "victor"),
+    ("6", "Mutanți ne-echivalenți", "unul ucis, unul supraviețuitor", "natalia"),
     ("7", "Unelte de mutație", "mutmut vs. cosmic-ray", "natalia"),
 ]
 cw, ch, gx, gy = 2.82, 2.05, 0.21, 0.28
@@ -824,12 +824,12 @@ text(s, 5.95, 6.45, 6.6, 0.35, "N = 4 condiții  ⇒  N + 1 = 5 teste  ·  tests
 
 # ============================================================== 15 · DIVIDER III
 divider(15, "Partea III · Echipa", "Testare prin mutații", "team",
-        [("5", "Un mutant de ordin 1 echivalent — și de ce nu poate fi ucis", "natalia"),
-         ("6", "Doi mutanți ne-echivalenți: unul ucis, unul supraviețuitor", "victor"),
+        [("5", "Un mutant de ordin 1 echivalent — și de ce nu poate fi ucis", "victor"),
+         ("6", "Doi mutanți ne-echivalenți: unul ucis, unul supraviețuitor", "natalia"),
          ("7", "Generare automată cu mutmut și cosmic-ray", "natalia")])
 
 # ============================================================== 16 · EQUIVALENT MUTANT
-s = new_slide(16, "Testare prin mutații", "Mutant de ordin 1 echivalent", "natalia", req="5")
+s = new_slide(16, "Testare prin mutații", "Mutant de ordin 1 echivalent", "victor", req="5")
 code_block(s, 0.7, 1.6, 6.3, 1.3, [
     ("# src/parking_gate.py, linia 57", "dim"),
     ("- is_peak_hours = (8 <= entry_hour <= 17)", "del"),
@@ -843,12 +843,12 @@ steps = [("1", "entry_hour este de tip int, deci h ∈ ℤ."),
 for i, (k, t) in enumerate(steps):
     yy = 3.5 + i * 0.78
     last = k == "∴"
-    pill(s, 0.7, yy + 0.06, 0.45, 0.45, k, fill=NATALIA if not last else INK, size=13)
+    pill(s, 0.7, yy + 0.06, 0.45, 0.45, k, fill=VICTOR if not last else INK, size=13)
     text(s, 1.35, yy + 0.08, 5.6, 0.6, t, size=13, color=INK if last else INK_2, bold=last)
 
-card(s, 7.45, 1.6, 5.2, 2.6, fill=NATALIA_L)
-text(s, 7.75, 1.8, 4.7, 0.3, "VERIFICARE EXHAUSTIVĂ", size=10.5, color=NATALIA, bold=True)
-text(s, 7.75, 2.15, 4.7, 0.9, "1 152", size=48, color=NATALIA, bold=True)
+card(s, 7.45, 1.6, 5.2, 2.6, fill=VICTOR_L)
+text(s, 7.75, 1.8, 4.7, 0.3, "VERIFICARE EXHAUSTIVĂ", size=10.5, color=VICTOR, bold=True)
+text(s, 7.75, 2.15, 4.7, 0.9, "1 152", size=48, color=VICTOR, bold=True)
 text(s, 7.75, 3.05, 4.7, 1.0, "comparații original vs. mutant, toate identice\n24 ore × 3 roluri × 2³ combinații bool × 2 niveluri de ocupare",
      size=11, color=INK_2)
 card(s, 7.45, 4.45, 5.2, 2.3, fill=WHITE, line=LINE)
@@ -859,7 +859,7 @@ text(s, 7.75, 4.65, 4.7, 2.0,
      size=11.5, color=INK_2, spacing=6)
 
 # ============================================================== 17 · KILLED VS SURVIVED
-s = new_slide(17, "Testare prin mutații", "Același test, doi mutanți, două destine", "victor", req="6")
+s = new_slide(17, "Testare prin mutații", "Același test, doi mutanți, două destine", "natalia", req="6")
 card(s, 0.7, 1.55, 11.95, 1.0, fill=PANEL)
 text(s, 0.95, 1.65, 3.0, 0.3, "TESTUL ALES (din BVA)", size=10, color=MUTED, bold=True)
 text(s, 0.95, 1.95, 6.0, 0.4, "test_bva_occupied_exactly_at_quota", size=13, color=INK, bold=True, font=MONO)
@@ -947,7 +947,7 @@ for i, (ttl, body, c) in enumerate([
 
 # ============================================================== 19 · CONCLUSIONS
 s = new_slide(19, "Concluzii", "Ce am obținut și ce am învățat", "team")
-kpis = [("78", "teste, toate trec"), ("100%", "ramuri acoperite (EP)"), ("7", "căi independente"),
+kpis = [("80", "teste, toate trec"), ("100%", "ramuri acoperite (EP)"), ("7", "căi independente"),
         (f"{MUT['mutmut']['combined']['score']:.0f}%", "scor mutmut, set combinat")]
 for i, (big, small) in enumerate(kpis):
     xx = 0.7 + i * 3.04

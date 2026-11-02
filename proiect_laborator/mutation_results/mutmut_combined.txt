@@ -4,9 +4,3 @@ To apply a mutant on disk:
 To show a mutant:
     mutmut show <id>
 
-
-Survived 🙁 (10)
-
----- src/parking_gate.py (10) ----
-
-1-9, 19

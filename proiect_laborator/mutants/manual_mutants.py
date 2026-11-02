@@ -1,6 +1,6 @@
 """
 Cerința 6: Mutanți Ne-Echivalenți (Omorât vs. Neomorât)
-Autor: Victor Mura (50% contribuție)
+Autor: Natalia Moroz (50% contribuție)
 
 Cazul de testare ales de la Punctul 1 (BVA):
   test_bva_occupied_exactly_at_quota:
