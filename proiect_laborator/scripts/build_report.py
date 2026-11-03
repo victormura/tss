@@ -484,22 +484,7 @@ def build_html():
 
 <div class="header-banner">
   <h1>PROIECT DE LABORATOR — TESTAREA SISTEMELOR SOFTWARE (TSS)</h1>
-  <div class="sub">Sistemul de Control Acces într-o Parcare Corporate Multi-Tenant (<code>src/parking_gate.py</code>) · Universitatea din București · FMI · 2026</div>
-</div>
-
-<div class="meta-grid">
-  <div class="meta-box">
-    <strong>Student 1 — Natalia Moroz (50% contribuție):</strong><br>
-    • <strong>Cerința 1:</strong> Generarea datelor de test funcționale (EP: 15 teste, BVA: 25 teste, Graf Cauză-Efect: 9 teste) în <code>pytest</code>.<br>
-    • <strong>Cerința 2:</strong> Măsurarea acoperirii la nivel de instrucțiune și de ramură pe seturile de la Cerința 1.<br>
-    • <strong>Cerința 5:</strong> Formularea și demonstrarea unui mutant de ordinul 1 echivalent.
-  </div>
-  <div class="meta-box teal">
-    <strong>Student 2 — Victor Mura (50% contribuție):</strong><br>
-    • <strong>Cerința 3:</strong> Construirea grafului orientat de control (CFG), calculul complexității ciclomatice <em>V(G) = 7</em> și extragerea căilor independente.<br>
-    • <strong>Cerința 4:</strong> Generarea setului minimal de teste pentru criteriul <strong>MC/DC</strong> pe decizia compusă EV.<br>
-    • <strong>Cerințele 6 &amp; 7:</strong> Doi mutanți ne-echivalenți (omorât vs. supraviețuitor) și analiza comparativă <code>mutmut</code> vs. <code>cosmic-ray</code>.
-  </div>
+  <div class="sub">Sistemul de Control Acces într-o Parcare Corporate Multi-Tenant (<code>src/parking_gate.py</code>) · Autori: Natalia Moroz &amp; Victor Mura · Universitatea din București, FMI (2026)</div>
 </div>
 
 <h2>0. Specificația Problematicii și Codul Sursă Supus Testării</h2>
@@ -507,7 +492,7 @@ def build_html():
 
 <pre>{h(numbered_src)}</pre>
 
-<h2>1. Cerința 1 — Testare Funcțională (Natalia Moroz)</h2>
+<h2>1. Cerința 1 — Testare Funcțională</h2>
 
 <h3>1.1 Partiționarea în Clase de Echivalență (Equivalence Partitioning — EP)</h3>
 <p>Pentru partiționarea domeniului în clase de echivalență, identificăm mai întâi <strong>clasele de ieșire (<em>I</em><sub>1</sub> … <em>I</em><sub>7</sub>)</strong> și <strong>clasele de intrare (valide și invalide)</strong> pentru fiecare parametru sau grup de parametri corelați, după care construim <strong>clasele de echivalență finale (<em>EC</em><sub>1</sub> … <em>EC</em><sub>13</sub>)</strong> ca asocieri între combinațiile de clase de intrare și clasa de ieșire produsă.</p>
@@ -612,7 +597,7 @@ def build_html():
   <tbody>{''.join(dt_rows)}</tbody>
 </table>
 
-<h2>2. Cerința 2 — Analiza Acoperirii Codului pe Seturile de la Cerința 1 (Natalia Moroz)</h2>
+<h2>2. Cerința 2 — Analiza Acoperirii Codului pe Seturile de la Cerința 1</h2>
 
 <div class="callout">
   <strong>Diferența dintre Acoperirea la Nivel de Instrucțiune (Statement Coverage) și Acoperirea la Nivel de Ramură (Branch Coverage):</strong><br>
@@ -635,7 +620,7 @@ def build_html():
   <tbody>{cov_rows_html}</tbody>
 </table>
 
-<h2>3. Cerința 3 — Graful Orientat de Control (CFG), Complexitatea Ciclomatică și Căile Independente (Victor Mura)</h2>
+<h2>3. Cerința 3 — Graful Orientat de Control (CFG), Complexitatea Ciclomatică și Căile Independente</h2>
 
 <div class="two-col">
   <div class="img-wrap" style="margin:0;">
@@ -680,7 +665,7 @@ def build_html():
 
 <div class="page-break"></div>
 
-<h2>4. Cerința 4 — Criteriul MC/DC pe Decizia Compusă EV (Victor Mura)</h2>
+<h2>4. Cerința 4 — Criteriul MC/DC pe Decizia Compusă EV</h2>
 <p>Analizăm decizia compusă de la linia 69 din <code>src/parking_gate.py</code>, care conține <em>N</em> = 4 condiții atomice independente:</p>
 <p class="code bold" style="background:#F1F5F9; padding:5px 8px; border-radius:4px;">
   D = (A ∧ B) ∧ (¬C ∨ Dq) &nbsp;&nbsp;unde:&nbsp; A = is_electric_vehicle, B = has_ev_spots_available, C = is_peak_hours, Dq = is_within_quota
@@ -710,13 +695,13 @@ def build_html():
   </tbody>
 </table>
 
-<h2>5. Cerința 5 — Mutant de Ordinul 1 Echivalent (Natalia Moroz)</h2>
+<h2>5. Cerința 5 — Mutant de Ordinul 1 Echivalent</h2>
 <pre>56 |     # Ore de vârf / program normal de lucru al campusului: 08:00 - 17:59
 57 | -   is_peak_hours = (8 &lt;= entry_hour &lt;= 17)     # Programul original P
 57 | +   is_peak_hours = (7 &lt; entry_hour &lt; 18)       # Mutantul echivalent M_eq (mutants/equivalent_mutant.py)</pre>
 <p><strong>Demonstrație:</strong> Deoarece <code>entry_hour</code> este întreg (<em>h</em> ∈ ℤ), pe mulțimea numerelor întregi avem echivalențele <em>h</em> ≥ 8 ⇔ <em>h</em> &gt; 7 și <em>h</em> ≤ 17 ⇔ <em>h</em> &lt; 18. Astfel, valoarea booleană a lui <code>is_peak_hours</code> este identică în <em>P</em> și în <em>M</em><sub>eq</sub> pentru orice <em>h</em> ∈ ℤ, deci <em>P</em>(<em>x</em>) = <em>M</em><sub>eq</sub>(<em>x</em>) pentru toate intrările posibile (verificat exhaustiv pe 1 152 combinații în <code>tests/test_equivalent_mutant.py</code>).</p>
 
-<h2>6. Cerința 6 — Doi Mutanți de Ordinul 1 Ne-echivalenți: Omorât vs. Neomorât (Victor Mura)</h2>
+<h2>6. Cerința 6 — Doi Mutanți de Ordinul 1 Ne-echivalenți: Omorât vs. Neomorât</h2>
 <p>Ambii mutanți sunt evaluați față de același caz de test din Cerința 1 (BVA, B08): <code>test_bva_occupied_exactly_at_quota</code>, care apelează funcția cu intrarea:<br>
 <code>q = 10, o = 10, h = 12, tier = REGULAR, ev = False, spot = False, company_allows_overflow = False</code> și verifică <code>assert res == AccessDecision.DENIED_QUOTA_EXCEEDED</code>.</p>
 
@@ -751,7 +736,7 @@ def build_html():
   • Mutantul #2 <strong>nu este echivalent</strong>: pentru testul BVA B22 <code>(q=10, o=14, h=10, REGULAR, F, F, company_allows_overflow=True)</code>, unde <code>overflow_count = 4</code> și <code>company_allows_overflow = True</code>, paranteza se execută și <em>P</em> returnează <code>GRANTED_PAID_OVERFLOW</code> (4 &lt; 5), în timp ce <em>M</em><sub>2</sub> returnează <code>DENIED_QUOTA_EXCEEDED</code> (4 &lt; 4 este <code>False</code>).
 </div>
 
-<h2>7. Cerința 7 — Compararea Utilitarelor <code>mutmut</code> și <code>cosmic-ray</code> (Victor Mura)</h2>
+<h2>7. Cerința 7 — Compararea Utilitarelor <code>mutmut</code> și <code>cosmic-ray</code></h2>
 
 <div class="callout">
   <strong>Semnificația suitelor „Cerința 1” și „Cerința 4” în evaluarea mutațiilor:</strong><br>

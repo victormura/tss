@@ -249,13 +249,14 @@ def owner_meta(owner):
 
 
 def header(slide, n, section, title, owner, req=None):
-    name, color, light = owner_meta(owner)
+    _, color, light = owner_meta(owner)
     box(slide, 0, 0, W, H, fill=WHITE)
     box(slide, 0, 0, W, 0.09, fill=color)
     label = section.upper() if req is None else f"CERINȚA {req}  ·  {section.upper()}"
-    text(slide, 0.7, 0.38, 8.8, 0.28, label, size=10, color=color, bold=True)
-    text(slide, 0.7, 0.64, 10.2, 0.55, title, size=23, color=INK, bold=True)
-    pill(slide, W - 0.7 - 2.1, 0.42, 2.1, 0.34, name, fill=light, color=color, size=10.5)
+    text(slide, 0.7, 0.38, 10.5, 0.28, label, size=10, color=color, bold=True)
+    text(slide, 0.7, 0.64, 11.9, 0.55, title, size=23, color=INK, bold=True)
+    if req is not None:
+        pill(slide, W - 0.7 - 1.45, 0.42, 1.45, 0.34, f"Cerința {req}", fill=light, color=color, size=10.5)
     box(slide, 0.7, 7.02, W - 1.4, 0.01, fill=LINE)
     text(slide, 0.7, 7.09, 8, 0.25, "TSS · Proiect de laborator · Smart Parking Gate", size=9, color=MUTED)
     text(slide, W - 1.7, 7.09, 1.0, 0.25, f"{n:02d} / {TOTAL}", size=9, color=MUTED, align=PP_ALIGN.RIGHT)
@@ -305,21 +306,20 @@ for i, (big, small) in enumerate(stats):
     text(s, 9.8, yy - 0.04, 3, 0.55, big, size=28, color=WHITE, bold=True)
     text(s, 9.8, yy + 0.48, 3, 0.3, small, size=11, color=rgb("9FB3C8"))
 
-for i, (name, reqs, color) in enumerate([
-        ("Natalia Moroz", "Cerințele 1, 2, 5  ·  EP, BVA, Graf cauză-efect, acoperire de cod, mutant echivalent", NATALIA),
-        ("Victor Mura", "Cerințele 3, 4, 6, 7  ·  CFG, căi independente, MC/DC, mutanți ne-echivalenți, mutmut & cosmic-ray", VICTOR)]):
+for i, (name, role_lbl, color) in enumerate([
+        ("Natalia Moroz", "Master Ingineria Sistemelor Software, Anul II", NATALIA),
+        ("Victor Mura", "Master Ingineria Sistemelor Software, Anul II", VICTOR)]):
     xx = 0.9 + i * 4.35
-    box(s, xx, 4.7, 4.15, 1.28, fill=rgb("18263B"), shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.08)
-    box(s, xx, 4.7, 0.07, 1.28, fill=color)
-    text(s, xx + 0.28, 4.84, 3.6, 0.35, name, size=17, color=WHITE, bold=True)
-    text(s, xx + 0.28, 5.24, 3.7, 0.65, reqs, size=10.5, color=rgb("C9D4E0"))
-    pill(s, xx + 3.1, 4.86, 0.85, 0.3, "50%", fill=color, size=10)
+    box(s, xx, 4.85, 4.15, 0.98, fill=rgb("18263B"), shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.08)
+    box(s, xx, 4.85, 0.07, 0.98, fill=color)
+    text(s, xx + 0.28, 5.02, 3.6, 0.35, name, size=17, color=WHITE, bold=True)
+    text(s, xx + 0.28, 5.4, 3.7, 0.35, role_lbl, size=10.5, color=rgb("C9D4E0"))
 text(s, 0.9, 6.75, 11, 0.3,
      "Universitatea din București  ·  FMI  ·  Master Ingineria Sistemelor Software, anul II  ·  2026",
      size=10.5, color=rgb("6B7A8F"))
 
 # ============================================================== 02 · AGENDA
-s = new_slide(2, "Structura proiectului", "Cele 7 cerințe și împărțirea responsabilităților", "team")
+s = new_slide(2, "Structura proiectului", "Cele 7 cerințe ale proiectului de laborator", "team")
 agenda = [
     ("1", "Testare funcțională", "EP (15 teste) · BVA (25) · CEG (9)", "natalia"),
     ("2", "Acoperire de cod", "Instrucțiuni vs. ramuri pe fiecare set", "natalia"),
@@ -333,18 +333,13 @@ cw, ch, gx, gy = 2.82, 2.02, 0.21, 0.26
 for i, (num, title_, sub, who) in enumerate(agenda):
     row, col = divmod(i, 4)
     xx = 0.7 + col * (cw + gx) + (0 if row == 0 else (cw + gx) / 2)
-    yy = 1.55 + row * (ch + gy)
+    yy = 1.65 + row * (ch + gy)
     _, c, _ = owner_meta(who)
     card(s, xx, yy, cw, ch, fill=WHITE, line=LINE)
     box(s, xx, yy, cw, 0.08, fill=c)
     text(s, xx + 0.25, yy + 0.28, 1.2, 0.6, f"0{num}", size=30, color=c, bold=True)
     text(s, xx + 0.25, yy + 0.96, cw - 0.4, 0.38, title_, size=15, color=INK, bold=True)
     text(s, xx + 0.25, yy + 1.34, cw - 0.4, 0.5, sub, size=11, color=MUTED)
-for i, (who, lbl) in enumerate([("natalia", "Natalia Moroz — 50% (Cerințele 1, 2, 5)"),
-                                 ("victor", "Victor Mura — 50% (Cerințele 3, 4, 6, 7)")]):
-    _, c, _ = owner_meta(who)
-    box(s, 0.7 + i * 4.2, 6.48, 0.22, 0.22, fill=c, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.3)
-    text(s, 1.02 + i * 4.2, 6.48, 3.8, 0.25, lbl, size=11, color=INK_2, bold=True)
 
 # ============================================================== 03 · SYSTEM UNDER TEST
 s = new_slide(3, "Sistemul testat", "Bariera unui campus de birouri cu mai mulți chiriași", "team")
@@ -429,7 +424,7 @@ for idx, (oid, name, cname) in enumerate(D.OUTPUTS):
     pill(s, xx, yy, 2.15, 0.32, f"{oid}: {name}", fill=bg, color=fg, size=8.0, bold=True)
 
 # ============================================================== 05 · DIVIDER I
-divider(5, "Partea I · Natalia Moroz", "Testare funcțională și acoperire de cod", "natalia",
+divider(5, "Partea I", "Testare funcțională și acoperire de cod", "natalia",
         [("1a", "Partiționarea în clase de echivalență: clase de intrare, ieșire și clase finale", "natalia"),
          ("1b", "Analiza valorilor de frontieră: toate cele 25 de cazuri testate", "natalia"),
          ("1c", "Graful cauză-efect și construcția pas cu pas a tabelului de decizie", "natalia"),
@@ -879,7 +874,7 @@ text(s, 0.7, 6.76, 11.9, 0.22,
      size=9, color=MUTED, font=MONO)
 
 # ============================================================== 15 · DIVIDER II
-divider(15, "Partea a II-a · Victor Mura", "Testare structurală", "victor",
+divider(15, "Partea a II-a", "Testare structurală", "victor",
         [("3", "Graful orientat de flux de control (CFG), complexitatea ciclomatică V(G) și căile independente", "victor"),
          ("4", "Setul minimal de teste pentru criteriul MC/DC pe decizia compusă EV", "victor")])
 
@@ -1027,7 +1022,7 @@ for i, (cond, c, p1, p2, fixed) in enumerate(pairs):
     text(s, 8.52, yy + 0.46, 4.0, 0.28, fixed, size=9.2, color=MUTED)
 
 # ============================================================== 19 · DIVIDER III
-divider(19, "Partea a III-a · Natalia Moroz & Victor Mura", "Testare bazată pe mutații", "team",
+divider(19, "Partea a III-a", "Testare bazată pe mutații", "team",
         [("5", "Mutant de ordinul 1 echivalent — demonstrație și verificare exhaustivă", "natalia"),
          ("6", "Doi mutanți ne-echivalenți: unul omorât și unul neomorât de același test", "victor"),
          ("7", "Evaluarea automată a mutațiilor cu mutmut și cosmic-ray", "victor")])
