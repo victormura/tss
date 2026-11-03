@@ -90,6 +90,38 @@ EFF_COLOR = {
     "Ef6": ("#D64545", "#FBE7E7"),
 }
 
+# Toate cele 11 arce de mascare M(Efi, Efj):
+#   M(Ef1, {Ef3, Ef4, Ef5, Ef6}) — 4 arce (indigo #5B4FD6)
+#   M(Ef2, {Ef3, Ef4, Ef5, Ef6}) — 4 arce (amber  #D97706)
+#   M(Ef3, {Ef4, Ef5, Ef6})      — 3 arce (teal   #0E8C7F)
+# Ordonate pe culoare și distanță (dx față de marginea dreaptă a etichetelor)
+# astfel încât arcele aceleiași surse să fie paralele și să nu se intersecteze.
+MASK_ARCS = [
+    # (src, dst, dx_lane, color, label_t)
+    ("Ef2", "Ef3", 22,  "#D97706", 0.50),
+    ("Ef3", "Ef4", 22,  "#0E8C7F", 0.50),
+    ("Ef3", "Ef5", 38,  "#0E8C7F", 0.55),
+    ("Ef3", "Ef6", 54,  "#0E8C7F", 0.60),
+    ("Ef2", "Ef4", 72,  "#D97706", 0.45),
+    ("Ef2", "Ef5", 88,  "#D97706", 0.52),
+    ("Ef2", "Ef6", 104, "#D97706", 0.58),
+    ("Ef1", "Ef3", 122, "#5B4FD6", 0.42),
+    ("Ef1", "Ef4", 138, "#5B4FD6", 0.48),
+    ("Ef1", "Ef5", 154, "#5B4FD6", 0.54),
+    ("Ef1", "Ef6", 170, "#5B4FD6", 0.60),
+]
+
+
+def cubic_bezier_points(x0, y0, x1, y1, x2, y2, x3, y3, steps=40):
+    pts = []
+    for i in range(steps + 1):
+        u = i / steps
+        v = 1 - u
+        px = (v ** 3) * x0 + 3 * (v ** 2) * u * x1 + 3 * v * (u ** 2) * x2 + (u ** 3) * x3
+        py = (v ** 3) * y0 + 3 * (v ** 2) * u * y1 + 3 * v * (u ** 2) * y2 + (u ** 3) * y3
+        pts.append((px, py))
+    return pts
+
 
 def center_and_r(n):
     if n.startswith("C"):
@@ -197,14 +229,17 @@ def build_svg():
                  f'<text x="{EX + RC + 22}" y="{y + 5}" font-size="12.5" font-weight="700" fill="{fg}" '
                  f'font-family="Menlo, monospace">{name}</text>')
 
-    bx = EX + RC + 255
-    for src, dst, bulge in [("Ef1", "Ef3", 40), ("Ef2", "Ef3", 22), ("Ef3", "Ef4", 26)]:
+    bx = EX + RC + 247
+    for src, dst, dx_lane, col, lt in MASK_ARCS:
         y1, y2 = effect_y[src], effect_y[dst]
-        ym = (y1 + y2) / 2
-        cx_ = bx + bulge
-        o.append(f'<path d="M {bx - 6},{y1} Q {cx_},{ym} {bx - 6},{y2}" fill="none" '
-                 f'stroke="#B45309" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#marr)"/>'
-                 f'<text x="{cx_ + 4}" y="{ym + 5}" font-size="13" font-weight="700" fill="#B45309">M</text>')
+        cx_ = bx + dx_lane
+        cy1 = y1 + (y2 - y1) * 0.18
+        cy2 = y2 - (y2 - y1) * 0.18
+        pts = cubic_bezier_points(bx, y1, cx_, cy1, cx_, cy2, bx, y2, steps=40)
+        lx, ly = pts[int(lt * 40)]
+        o.append(f'<path d="M {bx},{y1} C {cx_},{cy1:.1f} {cx_},{cy2:.1f} {bx},{y2}" fill="none" '
+                 f'stroke="{col}" stroke-width="1.4" stroke-dasharray="5,4" marker-end="url(#marr)"/>'
+                 f'<text x="{lx + 3:.1f}" y="{ly + 4:.1f}" font-size="10.5" font-weight="700" fill="{col}">M</text>')
     o.append("</svg>")
     return "\n".join(o)
 
@@ -316,28 +351,22 @@ def build_png(out_path, scale=2):
         drw.rounded_rectangle([S(rx1), S(ry1), S(rx2), S(ry2)], radius=S(6), fill=bg, outline=fg, width=S(2))
         drw.text((S(rx1 + 10), S(y)), name, fill=fg, font=f_mono, anchor="lm")
 
-    # 7. Constrângeri de mascare M între efecte
-    bx = EX + RC + 258
-    for src, dst, bulge in [("Ef1", "Ef3", 46), ("Ef2", "Ef3", 24), ("Ef3", "Ef4", 28)]:
+    # 7. Toate cele 11 constrângeri de mascare M între efecte
+    bx = EX + RC + 252
+    f_m = load_font(S(10), bold=True)
+    for src, dst, dx_lane, col, lt in MASK_ARCS:
         y1, y2 = effect_y[src], effect_y[dst]
-        ym = (y1 + y2) / 2
-        cx_ = bx + bulge
-        pts = []
-        for i in range(25):
-            u = i / 24
-            px = (1 - u) ** 2 * bx + 2 * (1 - u) * u * cx_ + u ** 2 * bx
-            py = (1 - u) ** 2 * y1 + 2 * (1 - u) * u * ym + u ** 2 * y2
-            pts.append((px, py))
+        cx_ = bx + dx_lane
+        cy1 = y1 + (y2 - y1) * 0.18
+        cy2 = y2 - (y2 - y1) * 0.18
+        pts = cubic_bezier_points(bx, y1, cx_, cy1, cx_, cy2, bx, y2, steps=44)
         for i in range(0, len(pts) - 1, 2):
-            drw.line([(S(pts[i][0]), S(pts[i][1])), (S(pts[i + 1][0]), S(pts[i + 1][1]))], fill="#B45309", width=S(2))
+            drw.line([(S(pts[i][0]), S(pts[i][1])), (S(pts[i + 1][0]), S(pts[i + 1][1]))], fill=col, width=S(2))
         ux, uy = pts[-1][0] - pts[-2][0], pts[-1][1] - pts[-2][1]
         d = math.hypot(ux, uy)
-        draw_arrow_head(drw, (S(bx), S(y2)), ux / d, uy / d, "#B45309", size=S(10))
-        drw.text((S((bx + cx_) / 2 + 8), S(ym)), "M", fill="#B45309", font=f_node, anchor="lm")
-
-    drw.text((S(bx + 6), S(effect_y["Ef5"] - 6)), "M(Ef1, Ef3..Ef6)", fill="#6B7A8F", font=f_note, anchor="lm")
-    drw.text((S(bx + 6), S(effect_y["Ef5"] + 14)), "M(Ef2, Ef3..Ef6)", fill="#6B7A8F", font=f_note, anchor="lm")
-    drw.text((S(bx + 6), S(effect_y["Ef5"] + 34)), "M(Ef3, Ef4..Ef6)", fill="#6B7A8F", font=f_note, anchor="lm")
+        draw_arrow_head(drw, (S(bx), S(y2)), ux / d, uy / d, col, size=S(8))
+        lx, ly = pts[int(lt * 44)]
+        drw.text((S(lx + 3), S(ly)), "M", fill=col, font=f_m, anchor="lm")
 
     img.save(out_path, "PNG")
 
@@ -350,10 +379,14 @@ def build_drawio():
         cells.append(f'<mxCell id="{cid}" value="{html.escape(value)}" style="{style}" vertex="1" parent="1">'
                      f'<mxGeometry x="{x:.0f}" y="{y:.0f}" width="{w}" height="{h}" as="geometry"/></mxCell>')
 
-    def e(eid, src, dst, value="", style=""):
+    def e(eid, src, dst, value="", style="", waypoints=None):
+        wp = ""
+        if waypoints:
+            pts_xml = "".join(f'<mxPoint x="{wx:.0f}" y="{wy:.0f}"/>' for wx, wy in waypoints)
+            wp = f'<Array as="points">{pts_xml}</Array>'
         cells.append(f'<mxCell id="{eid}" value="{html.escape(value)}" style="endArrow=block;html=1;'
                      f'strokeColor=#2C3E50;fontColor=#D64545;fontStyle=1;fontSize=15;{style}" edge="1" '
-                     f'parent="1" source="{src}" target="{dst}"><mxGeometry relative="1" as="geometry"/></mxCell>')
+                     f'parent="1" source="{src}" target="{dst}"><mxGeometry relative="1" as="geometry">{wp}</mxGeometry></mxCell>')
 
     for cid, lbl in CAUSES:
         y = cause_y[cid]
@@ -384,9 +417,15 @@ def build_drawio():
       "text;html=1;fontSize=15;fontStyle=1;fontColor=#D64545;align=center;")
     for c in ("C1", "C2"):
         e(f"eE{c}", "E", c, "", "dashed=1;endArrow=none;strokeColor=#D64545;")
-    for idx, (src, dst) in enumerate([("Ef1", "Ef3"), ("Ef2", "Ef3"), ("Ef3", "Ef4")]):
+    bx = EX + RC + 247
+    for idx, (src, dst, dx_lane, col, _) in enumerate(MASK_ARCS):
+        y1, y2 = effect_y[src], effect_y[dst]
+        wx = bx + dx_lane * 0.78
+        cy1 = y1 + (y2 - y1) * 0.22
+        cy2 = y2 - (y2 - y1) * 0.22
         e(f"eM{idx}", f"lbl_{src}", f"lbl_{dst}", "M",
-          "dashed=1;curved=1;strokeColor=#B45309;fontColor=#B45309;exitX=1;exitY=0.5;entryX=1;entryY=0.5;")
+          f"dashed=1;curved=1;strokeColor={col};fontColor={col};fontSize=11;exitX=1;exitY=0.5;entryX=1;entryY=0.5;",
+          waypoints=[(wx, cy1), (wx, cy2)])
     return ('<mxfile host="app.diagrams.net"><diagram id="ceg" name="Graf cauza-efect">'
             f'<mxGraphModel dx="1300" dy="700" grid="1" gridSize="10" page="1" pageWidth="{WIDTH}" '
             f'pageHeight="{HEIGHT}"><root>' + "".join(cells) + "</root></mxGraphModel></diagram></mxfile>")
