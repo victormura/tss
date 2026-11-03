@@ -1,6 +1,6 @@
 """
 Cerința 4: Modified Condition / Decision Coverage (MC/DC)
-Autor: Natalia Moroz (50% contribuție)
+Autor: Victor Mura (50% contribuție)
 
 Decizia compusă analizată (Regula 3 - Stații EV):
   Decision = (A and B) and (not C or D)

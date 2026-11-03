@@ -1,6 +1,6 @@
 """
 Cerința 1.b: Boundary Value Analysis (BVA) - Testare la Frontieră
-Autor: Victor Mura (50% contribuție)
+Autor: Natalia Moroz (50% contribuție)
 
 Această suită testează valorile de frontieră identificate pentru limitele numerice
 și deciziile relaționale din metoda evaluate_parking_access:

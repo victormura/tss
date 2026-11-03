@@ -1,6 +1,6 @@
 """
 Cerința 1.a: Equivalence Partitioning (EP) - Testare Funcțională
-Autor: Victor Mura (50% contribuție)
+Autor: Natalia Moroz (50% contribuție)
 
 Această suită testează clasele de echivalență (valide și invalide) identificate
 pentru parametrii metodei evaluate_parking_access.
@@ -164,6 +164,19 @@ class TestEquivalencePartitioning:
             entry_hour=11,
             tier=EmployeeTier.REGULAR,
             is_electric_vehicle=False,
+            has_ev_spots_available=False,
+            company_allows_overflow=False,
+        )
+        assert decision == AccessDecision.GRANTED_REGULAR
+
+    def test_ep_ev_without_free_spot(self):
+        """EP-EV-NO-SPOT: Vehicul electric fără stație liberă -> tratat ca acces standard în cotă."""
+        decision = evaluate_parking_access(
+            company_allocated_quota=10,
+            company_current_occupied=5,
+            entry_hour=11,
+            tier=EmployeeTier.REGULAR,
+            is_electric_vehicle=True,
             has_ev_spots_available=False,
             company_allows_overflow=False,
         )

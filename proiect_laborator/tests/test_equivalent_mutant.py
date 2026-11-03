@@ -1,6 +1,6 @@
 """
 Verificarea Proprietății de Echivalență a Mutantului (Cerința 5)
-Autor: Victor Mura (50% contribuție)
+Autor: Natalia Moroz (50% contribuție)
 """
 
 import sys

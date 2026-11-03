@@ -1,6 +1,6 @@
 """
 Demonstrație Programatică a Cerinței 6 (Mutant Omorât vs. Neomorât)
-Autor: Natalia Moroz (50% contribuție)
+Autor: Victor Mura (50% contribuție)
 """
 
 import pytest

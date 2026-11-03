@@ -1,6 +1,6 @@
 """
 Cerința 1.c: Cause-Effect Graphing (CEG) - Testare pe Bază de Graf Cauză-Efect
-Autor: Victor Mura (50% contribuție)
+Autor: Natalia Moroz (50% contribuție)
 
 Această suită implementează cazurile de testare derivate direct din Tabelul de Decizie
 obținut prin analiza Grafului Cauză-Efect:
